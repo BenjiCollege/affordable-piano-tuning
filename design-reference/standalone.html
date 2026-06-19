@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadence Piano Service — Expert Piano Tuning in San Antonio, Texas</title>
+<meta name="description" content="Expert piano tuning, maintenance, and restoration for homes, churches, schools, studios, and stages across San Antonio and the Hill Country since 2009.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root,[data-theme="dark"]{--ink:#0B0B0B;--ink2:#0f0f0f;--ink3:#161513;--ivory:#F8F4EC;--gold:#D4AF37;--walnut:#5A4634;--gray:#B8B8B8;--line:rgba(248,244,236,.09);--line2:rgba(248,244,236,.22);--cardHover:#121110;--scrim:rgba(11,11,11,.85);--glass:rgba(20,19,17,.72);--dot:rgba(248,244,236,.7);--onGold:#0B0B0B;}
+[data-theme="light"]{--ink:#F6F1E6;--ink2:#EFE8D9;--ink3:#E7DECC;--ivory:#1c1813;--gold:#8f7117;--walnut:#7a6446;--gray:#6e655a;--line:rgba(28,24,19,.13);--line2:rgba(28,24,19,.24);--cardHover:#F1E9D8;--scrim:rgba(246,241,230,.92);--glass:rgba(255,253,248,.82);--dot:rgba(28,24,19,.6);--onGold:#1c1813;}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--ink);color:var(--ivory);}
+body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .5s ease,color .5s ease;}
+section,footer,#sapt-head{transition:background .5s ease,border-color .5s ease;}
+::selection{background:rgba(212,175,55,.28);color:var(--ink);}
+a{color:inherit;text-decoration:none;}
+@keyframes dust{0%{transform:translate(0,0);opacity:0;}10%{opacity:.7;}90%{opacity:.5;}100%{transform:translate(var(--dx),var(--dy));opacity:0;}}
+@keyframes waveMove{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes vib{0%,100%{transform:scaleX(1);}50%{transform:scaleX(1.06);}}
+@keyframes shimmer{from{background-position:0% 50%;}to{background-position:200% 50%;}}
+@keyframes ringpulse{0%{transform:scale(.6);opacity:.55;}100%{transform:scale(1.7);opacity:0;}}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;}}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</head>
+<body>
+
+<div id="sapt-root" style="position:relative;background:var(--ink);overflow:hidden;transition:background .5s ease;">
+
+  <!-- progress + spotlight -->
+  <div id="sapt-progress" style="position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--walnut),var(--gold));z-index:200;box-shadow:0 0 12px rgba(212,175,55,.6);"></div>
+  <div id="sapt-spot" style="position:fixed;top:0;left:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;z-index:5;background:radial-gradient(circle,rgba(212,175,55,.10),transparent 60%);mix-blend-mode:screen;opacity:0;transition:opacity .4s;"></div>
+
+  <!-- HEADER -->
+  <header id="sapt-head" style="position:fixed;top:0;left:0;width:100%;z-index:150;padding:22px 0;transition:background .45s,padding .45s,border-color .45s;border-bottom:1px solid transparent;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;">
+      <a href="#hero" data-nav style="display:flex;align-items:center;gap:12px;">
+        <span style="display:inline-flex;gap:3px;align-items:flex-end;height:20px;">
+          <span style="width:3px;height:9px;background:var(--gold);border-radius:1px;"></span>
+          <span style="width:3px;height:18px;background:var(--gold);border-radius:1px;"></span>
+          <span style="width:3px;height:13px;background:var(--gold);border-radius:1px;"></span>
+        </span>
+        <span style="font-family:'Playfair Display',serif;font-size:19px;font-weight:600;letter-spacing:.02em;">Cadence</span>
+      </a>
+      <nav style="display:flex;align-items:center;gap:38px;">
+        <a href="#services" data-nav style="font-size:13.5px;letter-spacing:.04em;color:var(--gray);">Services</a>
+        <a href="#why" data-nav style="font-size:13.5px;letter-spacing:.04em;color:var(--gray);">Why Tuning</a>
+        <a href="#about" data-nav style="font-size:13.5px;letter-spacing:.04em;color:var(--gray);">About</a>
+        <a href="#area" data-nav style="font-size:13.5px;letter-spacing:.04em;color:var(--gray);">Service Area</a>
+        <a href="#faq" data-nav style="font-size:13.5px;letter-spacing:.04em;color:var(--gray);">FAQ</a>
+        <a href="#book" data-nav class="magnetic" style="display:inline-flex;align-items:center;gap:9px;font-size:13.5px;letter-spacing:.04em;color:var(--onGold);background:var(--gold);padding:11px 20px;border-radius:40px;font-weight:500;">Book Your Tuning</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- sound toggle -->
+  <button id="sapt-sound" class="magnetic" style="position:fixed;right:40px;bottom:34px;z-index:160;display:flex;align-items:center;gap:10px;background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(212,175,55,.3);color:var(--ivory);padding:11px 16px;border-radius:40px;font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;">
+    <span id="sapt-sound-dot" style="width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);"></span>
+    <span id="sapt-sound-label">Sound On</span>
+  </button>
+
+  <!-- theme toggle -->
+  <button id="sapt-theme" class="magnetic" style="position:fixed;left:40px;bottom:34px;z-index:160;display:flex;align-items:center;gap:10px;background:var(--glass);backdrop-filter:blur(8px);border:1px solid var(--line2);color:var(--ivory);padding:11px 16px;border-radius:40px;font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;">
+    <span id="sapt-theme-ic" style="position:relative;width:13px;height:13px;display:inline-block;">
+      <span id="sapt-theme-disc" style="position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--gold);"></span>
+      <span id="sapt-theme-fill" style="position:absolute;top:0;right:0;width:50%;height:100%;background:var(--gold);border-radius:0 50% 50% 0;"></span>
+    </span>
+    <span id="sapt-theme-label">Dark</span>
+  </button>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero" style="position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 0;">
+    <div data-par="0.25" style="position:absolute;inset:0;z-index:0;opacity:.5;">
+      <svg width="200%" height="100%" viewBox="0 0 2000 600" preserveAspectRatio="none" style="position:absolute;top:42%;left:0;width:200%;height:60%;animation:waveMove 26s linear infinite;">
+        <path d="M0,300 C166,180 333,420 500,300 C666,180 833,420 1000,300 C1166,180 1333,420 1500,300 C1666,180 1833,420 2000,300" fill="none" stroke="rgba(212,175,55,.16)" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div data-par="0.5" style="position:absolute;inset:0;z-index:0;opacity:.4;">
+      <svg width="200%" height="100%" viewBox="0 0 2000 600" preserveAspectRatio="none" style="position:absolute;top:55%;left:0;width:200%;height:55%;animation:waveMove 38s linear infinite;">
+        <path d="M0,300 C200,360 300,200 500,300 C700,400 800,180 1000,300 C1200,360 1300,200 1500,300 C1700,400 1800,180 2000,300" fill="none" stroke="rgba(90,70,52,.5)" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div id="hero-dust" style="position:absolute;inset:0;z-index:1;pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;z-index:1;background:radial-gradient(120% 90% at 50% 0%,rgba(212,175,55,.07),transparent 55%);"></div>
+
+    <div style="position:relative;z-index:3;max-width:1280px;margin:0 auto;padding:0 40px;width:100%;">
+      <div id="hero-eyebrow" style="display:flex;align-items:center;gap:14px;margin-bottom:30px;opacity:0;">
+        <span style="width:34px;height:1px;background:var(--gold);"></span>
+        <span style="font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);">San Antonio, Texas · Est. 2009</span>
+      </div>
+      <h1 style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(44px,7.4vw,108px);line-height:1.02;letter-spacing:-.015em;margin:0;max-width:14ch;">
+        <span class="line" style="display:block;overflow:hidden;padding-bottom:.06em;">
+          <span class="reveal-i" style="display:inline-block;transform:translateY(118%);">Expert</span>
+          <span class="reveal-i" style="display:inline-block;transform:translateY(118%);">Piano</span>
+          <span class="reveal-i" style="display:inline-block;transform:translateY(118%);">Tuning</span>
+        </span>
+        <span class="line" style="display:block;overflow:hidden;padding-bottom:.06em;">
+          <span class="reveal-i" style="display:inline-block;transform:translateY(118%);">in</span>
+          <span class="reveal-i" style="display:inline-block;transform:translateY(118%);font-style:italic;color:var(--gold);">San</span>
+          <span class="reveal-i" style="display:inline-block;transform:translateY(118%);font-style:italic;color:var(--gold);">Antonio</span>
+        </span>
+      </h1>
+      <p id="hero-sub" style="margin:34px 0 0;max-width:46ch;font-size:clamp(16px,1.5vw,20px);line-height:1.6;color:var(--gray);font-weight:300;opacity:0;">Precision tuning, maintenance, and restoration for homes, churches, schools, studios, and the stages where music lives.</p>
+      <div id="hero-cta" style="display:flex;flex-wrap:wrap;gap:18px;margin-top:42px;opacity:0;">
+        <a href="#book" data-nav class="magnetic" style="display:inline-flex;align-items:center;gap:11px;background:var(--gold);color:var(--onGold);padding:17px 30px;border-radius:46px;font-size:15px;font-weight:500;letter-spacing:.01em;">Book Your Tuning
+          <span style="display:inline-block;width:16px;height:1px;background:var(--onGold);position:relative;"><span style="position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid var(--onGold);border-right:1px solid var(--onGold);transform:rotate(45deg);"></span></span>
+        </a>
+        <a href="#services" data-nav class="magnetic" style="display:inline-flex;align-items:center;gap:11px;border:1px solid var(--line2);color:var(--ivory);padding:17px 30px;border-radius:46px;font-size:15px;font-weight:400;">Explore Services</a>
+      </div>
+    </div>
+
+    <!-- illuminating key strip -->
+    <div style="position:relative;z-index:3;margin-top:auto;width:100%;display:flex;justify-content:center;padding-bottom:0;">
+      <div id="hero-keys" style="position:relative;height:120px;width:100%;max-width:1280px;"></div>
+    </div>
+    <div id="hero-scrollcue" style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;">
+      <span style="font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gray);">Scroll</span>
+      <span style="width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:bob 2.4s ease-in-out infinite;"></span>
+    </div>
+  </section>
+
+  <!-- ============ TRUST ============ -->
+  <section id="trust" style="position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink2);">
+    <div style="max-width:1280px;margin:0 auto;padding:54px 40px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:40px;">
+      <div class="fade" style="display:flex;gap:56px;flex-wrap:wrap;">
+        <div><div class="counter" data-to="17" data-suffix="" style="font-family:'Playfair Display',serif;font-size:46px;line-height:1;color:var(--ivory);">0</div><div style="margin-top:9px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray);">Years Serving</div></div>
+        <div><div class="counter" data-to="1240" data-suffix="+" style="font-family:'Playfair Display',serif;font-size:46px;line-height:1;color:var(--ivory);">0</div><div style="margin-top:9px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray);">Pianos Tuned</div></div>
+        <div><div class="counter" data-to="4.9" data-dec="1" style="font-family:'Playfair Display',serif;font-size:46px;line-height:1;color:var(--gold);">0</div><div style="margin-top:9px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray);">Average Rating</div></div>
+        <div><div class="counter" data-to="8" data-suffix="" style="font-family:'Playfair Display',serif;font-size:46px;line-height:1;color:var(--ivory);">0</div><div style="margin-top:9px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray);">Cities Served</div></div>
+      </div>
+      <div class="fade" style="font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);text-align:right;line-height:2.1;">Homes · Churches · Schools · Studios<br><span style="color:var(--gold);">Reliable · Professional · Experienced</span></div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services" style="position:relative;padding:150px 0 130px;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 40px;">
+      <div class="fade" style="display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:64px;">
+        <div>
+          <div style="display:flex;align-items:center;gap:13px;margin-bottom:22px;"><span style="width:30px;height:1px;background:var(--gold);"></span><span style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);">The Craft</span></div>
+          <h2 style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(34px,4.6vw,62px);line-height:1.05;letter-spacing:-.01em;margin:0;max-width:16ch;">A complete service for the<span style="font-style:italic;color:var(--gold);"> instrument you love</span></h2>
+        </div>
+        <p style="max-width:34ch;font-size:16px;line-height:1.65;color:var(--gray);font-weight:300;">Every visit is unhurried and exacting — measured by ear, by tool, and by a respect for how your piano is meant to sound.</p>
+      </div>
+      <div id="svc-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);"></div>
+    </div>
+  </section>
+
+  <!-- ============ WHY TUNING MATTERS ============ -->
+  <section id="why" style="position:relative;padding:130px 0;background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;">
+    <svg id="sheet" viewBox="0 0 1400 360" preserveAspectRatio="xMidYMid meet" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:130%;height:auto;opacity:.5;pointer-events:none;">
+      <g stroke="rgba(212,175,55,.32)" stroke-width="1" fill="none" class="staff">
+        <path d="M40,90 H1360"/><path d="M40,130 H1360"/><path d="M40,170 H1360"/><path d="M40,210 H1360"/><path d="M40,250 H1360"/>
+      </g>
+      <path class="melody" d="M80,250 C200,250 220,130 340,130 C460,130 470,210 590,170 C720,128 740,250 880,210 C1010,174 1040,90 1160,130 C1260,162 1300,210 1340,170" fill="none" stroke="var(--gold)" stroke-width="2.2"/>
+    </svg>
+    <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 40px;">
+      <div class="fade" style="text-align:center;max-width:30ch;margin:0 auto 70px;">
+        <div style="display:inline-flex;align-items:center;gap:13px;margin-bottom:22px;"><span style="width:30px;height:1px;background:var(--gold);"></span><span style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);">Why It Matters</span><span style="width:30px;height:1px;background:var(--gold);"></span></div>
+        <h2 style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(32px,4.4vw,58px);line-height:1.08;margin:0;">A piano is always<span style="font-style:italic;color:var(--gold);"> moving</span></h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px;">
+        <div class="fade" style="text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:30px;color:var(--gold);margin-bottom:18px;">01</div><h3 style="font-family:'Playfair Display',serif;font-weight:500;font-size:21px;margin:0 0 12px;">Sound Quality</h3><p style="font-size:14.5px;line-height:1.65;color:var(--gray);font-weight:300;margin:0;">In-tune intervals let chords bloom instead of beat. The difference is felt the moment you sit down to play.</p></div>
+        <div class="fade" style="text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:30px;color:var(--gold);margin-bottom:18px;">02</div><h3 style="font-family:'Playfair Display',serif;font-weight:500;font-size:21px;margin:0 0 12px;">Longevity</h3><p style="font-size:14.5px;line-height:1.65;color:var(--gray);font-weight:300;margin:0;">Twenty tons of string tension want to drift. Regular care keeps the structure stable for generations.</p></div>
+        <div class="fade" style="text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:30px;color:var(--gold);margin-bottom:18px;">03</div><h3 style="font-family:'Playfair Display',serif;font-weight:500;font-size:21px;margin:0 0 12px;">Seasons</h3><p style="font-size:14.5px;line-height:1.65;color:var(--gray);font-weight:300;margin:0;">Texas humidity swells and shrinks the soundboard. Twice-yearly visits hold pitch through the changes.</p></div>
+        <div class="fade" style="text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:30px;color:var(--gold);margin-bottom:18px;">04</div><h3 style="font-family:'Playfair Display',serif;font-weight:500;font-size:21px;margin:0 0 12px;">Performance</h3><p style="font-size:14.5px;line-height:1.65;color:var(--gray);font-weight:300;margin:0;">When the room is listening, an even, voiced instrument lets the player disappear into the music.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KEYBOARD SCROLL EXPERIENCE ============ -->
+  <section id="keyboard" style="position:relative;height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:var(--ink);">
+    <div style="position:absolute;top:9vh;left:0;width:100%;text-align:center;z-index:3;">
+      <div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Play as you scroll</div>
+      <h2 style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(28px,3.6vw,46px);margin:0;">Eighty-eight reasons to listen closely</h2>
+    </div>
+    <div style="position:absolute;left:50%;top:0;height:100%;width:2px;transform:translateX(-50%);background:linear-gradient(transparent,rgba(212,175,55,.55),transparent);z-index:4;pointer-events:none;"></div>
+    <div style="position:relative;width:100%;height:300px;overflow:hidden;">
+      <div id="scroll-keys" style="position:absolute;top:0;left:0;height:100%;display:flex;align-items:flex-start;will-change:transform;"></div>
+    </div>
+    <div style="position:absolute;bottom:8vh;left:0;width:100%;text-align:center;z-index:3;font-size:13px;color:var(--gray);letter-spacing:.04em;">Each key is tuned to within a beat of perfect — scroll to hear the scale.</div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" style="position:relative;padding:150px 0;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:0.85fr 1fr;gap:80px;align-items:center;">
+      <div class="fade tilt" style="position:relative;">
+        <div style="position:relative;border-radius:4px;overflow:hidden;border:1px solid var(--line);background:repeating-linear-gradient(135deg,var(--ink2) 0 14px,var(--ink3) 14px 28px);aspect-ratio:4/5;display:flex;align-items:flex-end;">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><span style="font-family:'JetBrains Mono',monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);">technician portrait</span></div>
+          <div style="position:relative;width:100%;padding:24px;background:linear-gradient(transparent,var(--scrim));"><div style="font-family:'Playfair Display',serif;font-size:22px;">Daniel Ruiz</div><div style="font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:5px;">Registered Piano Technician</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="fade" style="display:flex;align-items:center;gap:13px;margin-bottom:24px;"><span style="width:30px;height:1px;background:var(--gold);"></span><span style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);">The Technician</span></div>
+        <h2 class="fade" style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.1;margin:0 0 28px;">Trained by ear,<span style="font-style:italic;color:var(--gold);"> guided by patience</span></h2>
+        <p class="fade" style="font-size:16.5px;line-height:1.75;color:var(--gray);font-weight:300;margin:0 0 20px;max-width:52ch;">I came to tuning the long way — first as a player, then as an apprentice who couldn't stop chasing the perfect unison. For seventeen years I've cared for instruments across San Antonio, from upright pianos in living rooms to concert grands on church platforms.</p>
+        <p class="fade" style="font-size:16.5px;line-height:1.75;color:var(--gray);font-weight:300;margin:0 0 34px;max-width:52ch;">My philosophy is simple: treat every piano as if it were the only one, and leave it sounding like its best self.</p>
+        <div class="fade" style="display:flex;gap:46px;">
+          <div><div style="font-family:'Playfair Display',serif;font-size:30px;color:var(--ivory);">RPT</div><div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-top:6px;">PTG Certified</div></div>
+          <div><div style="font-family:'Playfair Display',serif;font-size:30px;color:var(--ivory);">A&nbsp;440</div><div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-top:6px;">Concert Standard</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section id="process" style="position:relative;padding:130px 0;background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 40px;">
+      <div class="fade" style="text-align:center;margin-bottom:74px;">
+        <div style="display:inline-flex;align-items:center;gap:13px;margin-bottom:22px;"><span style="width:30px;height:1px;background:var(--gold);"></span><span style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);">The Process</span><span style="width:30px;height:1px;background:var(--gold);"></span></div>
+        <h2 style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(32px,4.4vw,58px);margin:0;">Three movements to a<span style="font-style:italic;color:var(--gold);"> tuned piano</span></h2>
+      </div>
+      <div style="position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;">
+        <div id="proc-line" style="position:absolute;top:34px;left:8%;right:8%;height:1px;background:rgba(212,175,55,.25);transform-origin:left;transform:scaleX(0);"></div>
+        <div class="fade proc-step" style="position:relative;text-align:center;"><div style="width:68px;height:68px;border-radius:50%;border:1px solid rgba(212,175,55,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;background:var(--ink2);font-family:'Playfair Display',serif;font-size:24px;color:var(--gold);">I</div><h3 style="font-family:'Playfair Display',serif;font-weight:500;font-size:23px;margin:0 0 12px;">Request Appointment</h3><p style="font-size:15px;line-height:1.65;color:var(--gray);font-weight:300;margin:0 auto;max-width:32ch;">Tell me about your piano and where it lives. We'll find a time that fits your week.</p></div>
+        <div class="fade proc-step" style="position:relative;text-align:center;"><div style="width:68px;height:68px;border-radius:50%;border:1px solid rgba(212,175,55,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;background:var(--ink2);font-family:'Playfair Display',serif;font-size:24px;color:var(--gold);">II</div><h3 style="font-family:'Playfair Display',serif;font-weight:500;font-size:23px;margin:0 0 12px;">Piano Evaluation</h3><p style="font-size:15px;line-height:1.65;color:var(--gray);font-weight:300;margin:0 auto;max-width:32ch;">I assess pitch, condition, and action — and explain exactly what your instrument needs.</p></div>
+        <div class="fade proc-step" style="position:relative;text-align:center;"><div style="width:68px;height:68px;border-radius:50%;border:1px solid rgba(212,175,55,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;background:var(--ink2);font-family:'Playfair Display',serif;font-size:24px;color:var(--gold);">III</div><h3 style="font-family:'Playfair Display',serif;font-weight:500;font-size:23px;margin:0 0 12px;">Precision Tuning</h3><p style="font-size:15px;line-height:1.65;color:var(--gray);font-weight:300;margin:0 auto;max-width:32ch;">Unison by unison, the piano is brought to concert pitch and voiced to the room.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICE AREA ============ -->
+  <section id="area" style="position:relative;padding:150px 0;overflow:hidden;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;">
+      <div>
+        <div class="fade" style="display:flex;align-items:center;gap:13px;margin-bottom:24px;"><span style="width:30px;height:1px;background:var(--gold);"></span><span style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);">Service Area</span></div>
+        <h2 class="fade" style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.1;margin:0 0 22px;">Across San Antonio<span style="font-style:italic;color:var(--gold);"> &amp; the Hill Country</span></h2>
+        <p class="fade" style="font-size:16px;line-height:1.7;color:var(--gray);font-weight:300;margin:0 0 36px;max-width:46ch;">House calls throughout the metro and surrounding towns — your piano is tuned where it stands.</p>
+        <div id="area-list" class="fade" style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px 30px;max-width:420px;"></div>
+      </div>
+      <div class="fade" style="position:relative;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;">
+        <div id="map" style="position:relative;width:100%;height:100%;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section id="testimonials" style="position:relative;padding:130px 0;background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 40px;">
+      <div class="fade" style="margin-bottom:70px;display:flex;align-items:center;gap:13px;"><span style="width:30px;height:1px;background:var(--gold);"></span><span style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);">In Their Words</span></div>
+      <div style="display:flex;flex-direction:column;gap:90px;">
+        <figure class="fade" style="margin:0;max-width:62%;">
+          <div style="font-family:'Playfair Display',serif;font-size:54px;line-height:1;color:var(--gold);height:20px;">&ldquo;</div>
+          <blockquote style="font-family:'Cormorant Garamond','Playfair Display',serif;font-size:clamp(24px,3vw,40px);line-height:1.3;font-weight:400;margin:0;color:var(--ivory);">Our 1962 Steinway hadn't sounded like this in twenty years. Daniel found notes I'd forgotten the instrument had.</blockquote>
+          <figcaption style="margin-top:26px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);">Margaret H. — Alamo Heights · Home Grand</figcaption>
+        </figure>
+        <figure class="fade" style="margin:0;max-width:62%;align-self:flex-end;text-align:right;">
+          <div style="font-family:'Playfair Display',serif;font-size:54px;line-height:1;color:var(--gold);height:20px;">&ldquo;</div>
+          <blockquote style="font-family:'Cormorant Garamond','Playfair Display',serif;font-size:clamp(24px,3vw,40px);line-height:1.3;font-weight:400;margin:0;color:var(--ivory);">He tunes our sanctuary piano before every season. Reliable, unhurried, and the congregation always notices.</blockquote>
+          <figcaption style="margin-top:26px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);">Pastor J. Vela — Stone Oak · Church</figcaption>
+        </figure>
+        <figure class="fade" style="margin:0;max-width:62%;">
+          <div style="font-family:'Playfair Display',serif;font-size:54px;line-height:1;color:var(--gold);height:20px;">&ldquo;</div>
+          <blockquote style="font-family:'Cormorant Garamond','Playfair Display',serif;font-size:clamp(24px,3vw,40px);line-height:1.3;font-weight:400;margin:0;color:var(--ivory);">As a teacher I'm picky about pitch. My students play better since Cadence took over our studio's care.</blockquote>
+          <figcaption style="margin-top:26px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);">Elena R. — Helotes · Teaching Studio</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" style="position:relative;padding:150px 0;">
+    <div style="max-width:920px;margin:0 auto;padding:0 40px;">
+      <div class="fade" style="text-align:center;margin-bottom:64px;">
+        <div style="display:inline-flex;align-items:center;gap:13px;margin-bottom:22px;"><span style="width:30px;height:1px;background:var(--gold);"></span><span style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);">Questions</span><span style="width:30px;height:1px;background:var(--gold);"></span></div>
+        <h2 style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,4vw,52px);margin:0;">Before your<span style="font-style:italic;color:var(--gold);"> first visit</span></h2>
+      </div>
+      <div id="faq-list"></div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section id="book" style="position:relative;padding:160px 0;text-align:center;overflow:hidden;">
+    <div id="cresc" style="position:absolute;inset:0;z-index:0;opacity:.55;">
+      <svg width="200%" height="100%" viewBox="0 0 2000 400" preserveAspectRatio="none" style="position:absolute;top:50%;left:0;transform:translateY(-50%) scaleY(0.4);transform-origin:center;width:200%;height:80%;animation:waveMove 20s linear infinite;">
+        <path d="M0,200 C166,80 333,320 500,200 C666,80 833,320 1000,200 C1166,80 1333,320 1500,200 C1666,80 1833,320 2000,200" fill="none" stroke="rgba(212,175,55,.4)" stroke-width="2"/>
+      </svg>
+    </div>
+    <div style="position:absolute;inset:0;z-index:0;background:radial-gradient(70% 120% at 50% 100%,rgba(212,175,55,.1),transparent 60%);"></div>
+    <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 40px;">
+      <h2 class="fade" style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(40px,6.4vw,96px);line-height:1.02;letter-spacing:-.015em;margin:0;">Bring your piano<br><span style="font-style:italic;color:var(--gold);">back to life</span></h2>
+      <p class="fade" style="margin:32px auto 0;max-width:40ch;font-size:18px;line-height:1.6;color:var(--gray);font-weight:300;">Professional care. Exceptional sound. Local expertise.</p>
+      <div class="fade" style="margin-top:46px;display:flex;flex-wrap:wrap;gap:18px;justify-content:center;">
+        <a href="tel:+12105550174" class="magnetic" style="display:inline-flex;align-items:center;gap:11px;background:var(--gold);color:var(--onGold);padding:19px 36px;border-radius:46px;font-size:16px;font-weight:500;">Schedule Your Tuning
+          <span style="display:inline-block;width:16px;height:1px;background:var(--onGold);position:relative;"><span style="position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid var(--onGold);border-right:1px solid var(--onGold);transform:rotate(45deg);"></span></span>
+        </a>
+        <a href="tel:+12105550174" class="magnetic" style="display:inline-flex;align-items:center;gap:11px;border:1px solid var(--line2);color:var(--ivory);padding:19px 36px;border-radius:46px;font-size:16px;">(210) 555-0174</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="position:relative;padding:80px 0 44px;border-top:1px solid var(--line);background:var(--ink);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+          <span style="display:inline-flex;gap:3px;align-items:flex-end;height:20px;"><span style="width:3px;height:9px;background:var(--gold);border-radius:1px;"></span><span style="width:3px;height:18px;background:var(--gold);border-radius:1px;"></span><span style="width:3px;height:13px;background:var(--gold);border-radius:1px;"></span></span>
+          <span style="font-family:'Playfair Display',serif;font-size:21px;font-weight:600;">Cadence Piano Service</span>
+        </div>
+        <p style="font-size:14.5px;line-height:1.7;color:var(--gray);font-weight:300;max-width:36ch;margin:0;">Expert piano tuning, maintenance, and restoration for San Antonio and the surrounding Hill Country since 2009.</p>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Contact</div>
+        <div style="font-size:14.5px;line-height:2;color:var(--gray);font-weight:300;"><a href="tel:+12105550174">(210) 555-0174</a><br><a href="mailto:hello@cadencepiano.com">hello@cadencepiano.com</a><br>San Antonio, TX</div>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Service Areas</div>
+        <div style="font-size:14.5px;line-height:2;color:var(--gray);font-weight:300;">San Antonio · Alamo Heights<br>Stone Oak · Helotes<br>Boerne · New Braunfels<br>Schertz · Cibolo</div>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Follow</div>
+        <div style="font-size:14.5px;line-height:2;color:var(--gray);font-weight:300;"><a href="#book" data-nav>Instagram</a><br><a href="#book" data-nav>Facebook</a><br><a href="#book" data-nav>YouTube</a></div>
+      </div>
+    </div>
+    <div style="max-width:1280px;margin:54px auto 0;padding:24px 40px 0;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12.5px;color:var(--gray);letter-spacing:.04em;">
+      <span>© 2026 Cadence Piano Service. All rights reserved.</span>
+      <span>Piano Tuning · Repair · Maintenance — San Antonio, Texas</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+/* ============================================================
+   Cadence Piano Service — standalone implementation
+   Recreated from the Claude Design DC prototype. All behavior
+   (GSAP/Lenis scroll, Web Audio piano, theme + sound toggles,
+   parallax, magnetic buttons, scroll-driven keyboard) preserved.
+   ============================================================ */
+class Cadence {
+  constructor(props){ this.props = props || {}; }
+
+  componentDidMount(){
+    const p = this.props || {};
+    this.accent = p.accentColor || '#D4AF37';
+    if (this.accent && this.accent.toLowerCase() !== '#d4af37') document.documentElement.style.setProperty('--gold', this.accent);
+    let t = (p.theme || 'Dark').toString().toLowerCase();
+    try { const s = localStorage.getItem('cadence-theme'); if (s) t = s; } catch(e){}
+    this.theme = t === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', this.theme);
+    const lvl = p.motionLevel || 'Balanced';
+    this.mo = lvl === 'Subtle' ? 0.5 : lvl === 'Maximal' ? 1.5 : 1;
+    this.soundOn = p.soundOn !== false;
+    this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (this.reduce) this.mo = 0;
+    this.lastIdx = -1;
+    this.injectStatic();
+    this.boot(0);
+  }
+
+  boot(n){
+    if (window.gsap && window.ScrollTrigger && window.Lenis){
+      try { this.init(); } catch(e){ console.error('init', e); this.revealAll(); }
+      return;
+    }
+    if (n > 160){ this.revealAll(); return; }
+    setTimeout(() => this.boot(n + 1), 50);
+  }
+  revealAll(){ document.querySelectorAll('.reveal-i').forEach(el => el.style.transform = 'translateY(0)'); }
+
+  /* ---------- AUDIO ---------- */
+  ensureAudio(){
+    if (!this.actx){
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      this.actx = new AC();
+      this.master = this.actx.createGain();
+      this.master.gain.value = 0.85;
+      this.master.connect(this.actx.destination);
+    }
+    if (this.actx.state === 'suspended') this.actx.resume();
+  }
+  playMidi(m, dur){
+    if (!this.soundOn) return;
+    this.ensureAudio();
+    if (!this.actx) return;
+    const ctx = this.actx, now = ctx.currentTime;
+    const freq = 440 * Math.pow(2, (m - 69) / 12);
+    const d = dur || 1.9;
+    const lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass'; lp.frequency.value = 4600; lp.Q.value = 0.3;
+    lp.connect(this.master);
+    [[1,1],[2,0.55],[3,0.3],[4,0.17],[5,0.1],[6,0.05]].forEach(([h,a]) => {
+      const o = ctx.createOscillator();
+      o.type = 'sine';
+      o.frequency.value = freq * h;
+      o.detune.value = (Math.random()*4 - 2);
+      const g = ctx.createGain();
+      const peak = 0.15 * a;
+      g.gain.setValueAtTime(0, now);
+      g.gain.linearRampToValueAtTime(peak, now + 0.006);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + d);
+      o.connect(g).connect(lp);
+      o.start(now); o.stop(now + d + 0.05);
+    });
+  }
+
+  /* ---------- STATIC DOM (services, keyboards, map, faq, areas) ---------- */
+  injectStatic(){
+    // services
+    const svc = [
+      ['01','Piano Tuning','Concert-pitch tuning at A-440, refined unison by unison for a clear, singing tone.'],
+      ['02','Pitch Correction','Bringing neglected or flat pianos back up to standard with a careful, staged raise.'],
+      ['03','Maintenance','Cleaning, lubrication, and adjustment to keep the action responsive and quiet.'],
+      ['04','Voicing','Shaping the hammers so the piano speaks evenly from a whisper to full volume.'],
+      ['05','Tone Regulation','Balancing brightness and warmth across the keyboard to suit your room.'],
+      ['06','Seasonal Care','Twice-yearly visits timed to Texas humidity swings to hold pitch year-round.'],
+      ['07','Minor Repairs','Sticking keys, broken strings, and worn parts repaired on the spot when possible.'],
+      ['08','Performance Prep','On-site fine tuning and voicing before recitals, services, and recordings.']
+    ];
+    const grid = document.getElementById('svc-grid');
+    if (grid) grid.innerHTML = svc.map(s => `
+      <div class="svc-card" style="position:relative;background:var(--ink);padding:38px 30px 34px;cursor:default;overflow:hidden;transition:background .5s;">
+        <div class="svc-spot" style="position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,.13),transparent 60%);opacity:0;pointer-events:none;transform:translate(-50%,-50%);transition:opacity .35s;"></div>
+        <div style="position:relative;z-index:1;">
+          <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--gold);margin-bottom:38px;">${s[0]}</div>
+          <h3 style="font-family:'Playfair Display',serif;font-weight:500;font-size:22px;margin:0 0 14px;line-height:1.15;">${s[1]}</h3>
+          <p style="font-size:14px;line-height:1.62;color:var(--gray);font-weight:300;margin:0;">${s[2]}</p>
+        </div>
+      </div>`).join('');
+
+    // service areas
+    const cities = ['San Antonio','Alamo Heights','Stone Oak','Helotes','Boerne','New Braunfels','Schertz','Cibolo'];
+    const al = document.getElementById('area-list');
+    if (al) al.innerHTML = cities.map(c => `<div style="display:flex;align-items:center;gap:11px;font-size:15px;color:var(--ivory);font-weight:300;"><span style="width:5px;height:5px;border-radius:50%;background:var(--gold);"></span>${c}</div>`).join('');
+
+    // map
+    const map = document.getElementById('map');
+    if (map){
+      const pts = [['Boerne',20,24],['Helotes',30,46],['Stone Oak',72,22],['Schertz',82,40],['New Braunfels',88,16],['Cibolo',86,56],['Alamo Heights',60,58]];
+      map.innerHTML = `
+        <svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;">
+          <circle class="ring" cx="50" cy="50" r="20" fill="none" stroke="rgba(212,175,55,.22)" stroke-width="0.4"/>
+          <circle class="ring" cx="50" cy="50" r="33" fill="none" stroke="rgba(212,175,55,.16)" stroke-width="0.4"/>
+          <circle class="ring" cx="50" cy="50" r="46" fill="none" stroke="rgba(212,175,55,.1)" stroke-width="0.4"/>
+          ${pts.map(p => `<line x1="50" y1="50" x2="${p[1]}" y2="${p[2]}" stroke="rgba(212,175,55,.14)" stroke-width="0.3"/>`).join('')}
+        </svg>
+        <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;">
+          <span style="position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:1px solid var(--gold);animation:ringpulse 3s ease-out infinite;"></span>
+          <span style="display:block;width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px var(--gold);margin:0 auto;"></span>
+          <span style="display:block;margin-top:10px;font-family:'Playfair Display',serif;font-size:14px;color:var(--ivory);white-space:nowrap;">San Antonio</span>
+        </div>
+        ${pts.map(p => `<div class="mappt" style="position:absolute;left:${p[1]}%;top:${p[2]}%;transform:translate(-50%,-50%);text-align:center;opacity:0;"><span style="display:block;width:7px;height:7px;border-radius:50%;background:var(--dot);margin:0 auto;"></span><span style="display:block;margin-top:6px;font-size:10.5px;letter-spacing:.04em;color:var(--gray);white-space:nowrap;">${p[0]}</span></div>`).join('')}`;
+    }
+
+    // faq
+    const faqs = [
+      ['How often should my piano be tuned?','Most pianos do best with two tunings a year — typically after the heating season and after the humid summer. New pianos and heavily-played instruments may want more frequent visits.'],
+      ['How long does a tuning take?','A standard tuning takes about 90 minutes. If the piano has dropped well below pitch, a pitch raise adds time, which I will always explain before starting.'],
+      ['Will my piano hold its tune?','A stable, well-maintained piano in a climate-controlled room holds pitch beautifully between seasonal visits. I will share simple humidity tips for your space.'],
+      ['Do you service every kind of piano?','Yes — uprights, baby grands, and concert grands, in homes, churches, schools, studios, and venues throughout the San Antonio area.'],
+      ['What does a visit cost?','Pricing depends on the instrument and its condition. Reach out with a few details and I will give you a clear, honest quote before we book.']
+    ];
+    const fl = document.getElementById('faq-list');
+    if (fl) fl.innerHTML = faqs.map((f,i) => `
+      <div class="faq-item" style="border-top:1px solid var(--line);${i===faqs.length-1?'border-bottom:1px solid var(--line);':''}">
+        <button class="faq-q" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;background:none;border:none;color:var(--ivory);text-align:left;padding:28px 4px;cursor:pointer;font-family:'Playfair Display',serif;font-size:clamp(19px,2vw,25px);font-weight:500;">
+          <span>${f[0]}</span>
+          <span class="faq-ic" style="flex:none;width:26px;height:26px;position:relative;transition:transform .4s;"><span style="position:absolute;top:50%;left:0;width:100%;height:1px;background:var(--gold);"></span><span class="faq-v" style="position:absolute;left:50%;top:0;width:1px;height:100%;background:var(--gold);transition:opacity .4s;"></span></span>
+        </button>
+        <div class="faq-a" style="overflow:hidden;height:0;opacity:0;transition:height .45s ease,opacity .45s ease;">
+          <p style="margin:0;padding:0 60px 30px 4px;font-size:15.5px;line-height:1.7;color:var(--gray);font-weight:300;max-width:60ch;">${f[1]}</p>
+        </div>
+      </div>`).join('');
+
+    // hero keys + scroll keys
+    this.heroWhites = this.buildKeyboard(document.getElementById('hero-keys'), 60, 2, {mode:'hero'});
+    this.scrollWhites = this.buildKeyboard(document.getElementById('scroll-keys'), 36, 5, {mode:'scroll'});
+  }
+
+  // semitone -> within octave: whites/blacks
+  buildKeyboard(container, startMidi, octaves, opts){
+    if (!container) return [];
+    const mode = opts.mode;
+    const whiteW = mode === 'scroll' ? 74 : 58;
+    const whiteH = mode === 'scroll' ? 300 : 120;
+    const blackW = Math.round(whiteW * 0.62);
+    const blackH = Math.round(whiteH * 0.62);
+    const whiteSemi = [0,2,4,5,7,9,11];
+    const blackAfter = {0:1,1:3,3:6,4:8,5:10};
+    const whites = [];
+    const totalW = octaves * 7 * whiteW;
+    container.style.width = totalW + 'px';
+    const frag = document.createDocumentFragment();
+    for (let o = 0; o < octaves; o++){
+      for (let i = 0; i < 7; i++){
+        const idx = o*7 + i;
+        const midi = startMidi + o*12 + whiteSemi[i];
+        const key = document.createElement('div');
+        key.style.cssText = `position:absolute;top:0;left:${idx*whiteW}px;width:${whiteW-2}px;height:${whiteH}px;background:linear-gradient(#fbf8f1,#e9e3d6);border:1px solid #c9c2b2;border-radius:0 0 4px 4px;z-index:1;cursor:pointer;`;
+        const glow = document.createElement('div');
+        glow.className = 'kglow';
+        glow.style.cssText = 'position:absolute;inset:0;border-radius:0 0 4px 4px;background:linear-gradient(rgba(212,175,55,.95),rgba(212,175,55,.35));opacity:0;pointer-events:none;box-shadow:0 0 26px rgba(212,175,55,.7);';
+        key.appendChild(glow);
+        key.addEventListener('pointerenter', () => { this.lightEl(glow); this.playMidi(midi); });
+        frag.appendChild(key);
+        whites.push({glow, midi, el:key});
+      }
+    }
+    // blacks on top
+    for (let o = 0; o < octaves; o++){
+      for (let i = 0; i < 7; i++){
+        if (!(i in blackAfter)) continue;
+        const idx = o*7 + i;
+        const midi = startMidi + o*12 + blackAfter[i];
+        const left = (idx+1)*whiteW - blackW/2;
+        const bk = document.createElement('div');
+        bk.style.cssText = `position:absolute;top:0;left:${left}px;width:${blackW}px;height:${blackH}px;background:linear-gradient(#2a2722,#0c0b0a);border-radius:0 0 3px 3px;z-index:2;cursor:pointer;box-shadow:0 3px 5px rgba(0,0,0,.5);`;
+        const glow = document.createElement('div');
+        glow.style.cssText = 'position:absolute;inset:0;border-radius:0 0 3px 3px;background:linear-gradient(rgba(212,175,55,.9),rgba(212,175,55,.25));opacity:0;pointer-events:none;box-shadow:0 0 22px rgba(212,175,55,.65);';
+        bk.appendChild(glow);
+        bk.addEventListener('pointerenter', () => { this.lightEl(glow); this.playMidi(midi); });
+        frag.appendChild(bk);
+      }
+    }
+    container.appendChild(frag);
+    return whites;
+  }
+  lightEl(el){
+    if (!window.gsap){ el.style.opacity = '0.9'; setTimeout(()=>el.style.opacity='0',500); return; }
+    window.gsap.killTweensOf(el);
+    window.gsap.fromTo(el, {opacity:0.95}, {opacity:0, duration:1.1, ease:'power2.out'});
+  }
+
+  /* ---------- INIT (gsap + lenis + scroll) ---------- */
+  init(){
+    const gsap = window.gsap, ST = window.ScrollTrigger;
+    gsap.registerPlugin(ST);
+
+    // Lenis smooth scroll
+    if (!this.reduce){
+      const lenis = new window.Lenis({ lerp: 0.09, smoothWheel: true, wheelMultiplier: 0.9 });
+      this.lenis = lenis;
+      lenis.on('scroll', ST.update);
+      gsap.ticker.add((t) => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    this.setupTheme();
+    this.buildParticles();
+    this.heroIntro();
+    this.setupNav();
+    this.setupHeader();
+    this.setupProgress();
+    this.setupReveals();
+    this.setupCounters();
+    this.setupSheet();
+    this.setupHeroParallax();
+    this.setupScrollKeyboard();
+    this.setupProcess();
+    this.setupMap();
+    this.setupTilt();
+    this.setupMagnetic();
+    this.setupSpotlight();
+    this.setupFAQ();
+    this.setupCrescendo();
+    this.setupSound();
+    this.setupAudioGesture();
+
+    ST.refresh();
+  }
+
+  buildParticles(){
+    const host = document.getElementById('hero-dust');
+    if (!host || this.mo === 0) return;
+    const n = Math.round(26 * this.mo);
+    let html = '';
+    for (let i = 0; i < n; i++){
+      const x = Math.random()*100, y = 40 + Math.random()*60;
+      const s = 1 + Math.random()*2.4;
+      const dur = 9 + Math.random()*12;
+      const dx = (Math.random()*60 - 30) + 'px';
+      const dy = -(60 + Math.random()*120) + 'px';
+      html += `<span style="position:absolute;left:${x}%;top:${y}%;width:${s}px;height:${s}px;border-radius:50%;background:rgba(212,175,55,.7);--dx:${dx};--dy:${dy};animation:dust ${dur}s linear ${(-Math.random()*dur)}s infinite;"></span>`;
+    }
+    host.innerHTML = html;
+  }
+
+  heroIntro(){
+    const gsap = window.gsap;
+    const tl = gsap.timeline({ defaults:{ ease:'power4.out' } });
+    tl.to('#hero-eyebrow', { opacity:1, duration:0.8 })
+      .to('.reveal-i', { y:0, duration:1.1, stagger:0.07 }, '-=0.5')
+      .to('#hero-sub', { opacity:1, y:0, duration:0.9 }, '-=0.6')
+      .to('#hero-cta', { opacity:1, y:0, duration:0.9 }, '-=0.7')
+      .to('#hero-scrollcue', { opacity:1, duration:0.8 }, '-=0.3');
+    // key strip illumination like a scale
+    if (this.heroWhites && this.heroWhites.length){
+      const glows = this.heroWhites.map(w => w.glow);
+      tl.fromTo(glows, { opacity:0.9 }, { opacity:0, duration:1.0, stagger:0.06, ease:'power2.out' }, '-=1.4');
+    }
+  }
+
+  setupNav(){
+    document.querySelectorAll('[data-nav]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        const t = document.querySelector(href);
+        if (!t) return;
+        e.preventDefault();
+        if (this.lenis) this.lenis.scrollTo(t, { offset: -10, duration: 1.3 });
+        else t.scrollIntoView();
+      });
+    });
+  }
+
+  setupHeader(){
+    const head = document.getElementById('sapt-head');
+    this._headOn = false;
+    this.syncHeader = () => {
+      const on = this._headOn;
+      const dark = this.theme !== 'light';
+      head.style.background = on ? (dark ? 'rgba(11,11,11,.82)' : 'rgba(246,241,230,.86)') : 'transparent';
+      head.style.backdropFilter = on ? 'blur(14px)' : 'none';
+      head.style.padding = on ? '15px 0' : '22px 0';
+      head.style.borderColor = on ? 'var(--line)' : 'transparent';
+    };
+    window.ScrollTrigger.create({
+      start: 60, end: 'max',
+      onUpdate: (self) => { this._headOn = self.scroll() > 60; this.syncHeader(); }
+    });
+    this.syncHeader();
+  }
+
+  setupTheme(){
+    const btn = document.getElementById('sapt-theme');
+    const label = document.getElementById('sapt-theme-label');
+    const fill = document.getElementById('sapt-theme-fill');
+    const spot = document.getElementById('sapt-spot');
+    const apply = (t, persist) => {
+      this.theme = (t === 'light') ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', this.theme);
+      if (label) label.textContent = this.theme === 'light' ? 'Light' : 'Dark';
+      if (fill){
+        if (this.theme === 'light'){ fill.style.left = '0'; fill.style.right = 'auto'; fill.style.borderRadius = '50% 0 0 50%'; }
+        else { fill.style.left = 'auto'; fill.style.right = '0'; fill.style.borderRadius = '0 50% 50% 0'; }
+      }
+      if (spot) spot.style.mixBlendMode = this.theme === 'light' ? 'multiply' : 'screen';
+      if (this.syncHeader) this.syncHeader();
+      if (persist){ try { localStorage.setItem('cadence-theme', this.theme); } catch(e){} }
+    };
+    apply(this.theme, false);
+    if (btn) btn.addEventListener('click', () => {
+      const next = this.theme === 'light' ? 'dark' : 'light';
+      apply(next, true);
+      this.playMidi(next === 'light' ? 72 : 55, 1.1);
+    });
+  }
+
+  setupProgress(){
+    const bar = document.getElementById('sapt-progress');
+    window.ScrollTrigger.create({
+      start: 0, end: 'max', scrub: true,
+      onUpdate: (self) => { bar.style.width = (self.progress*100) + '%'; }
+    });
+  }
+
+  setupReveals(){
+    const gsap = window.gsap;
+    gsap.utils.toArray('.fade').forEach(el => {
+      gsap.from(el, {
+        opacity: 0, y: this.reduce ? 0 : 46, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 86%' }
+      });
+    });
+  }
+
+  setupCounters(){
+    const gsap = window.gsap;
+    document.querySelectorAll('.counter').forEach(el => {
+      const to = parseFloat(el.dataset.to);
+      const dec = parseInt(el.dataset.dec || '0', 10);
+      const suf = el.dataset.suffix || '';
+      const obj = { v: 0 };
+      gsap.to(obj, {
+        v: to, duration: 2, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 90%' },
+        onUpdate: () => {
+          el.textContent = (dec ? obj.v.toFixed(dec) : Math.round(obj.v).toLocaleString()) + suf;
+        }
+      });
+    });
+  }
+
+  setupSheet(){
+    const gsap = window.gsap;
+    const staff = document.querySelectorAll('#sheet .staff path');
+    const mel = document.querySelector('#sheet .melody');
+    staff.forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+    if (mel){ const L = mel.getTotalLength(); mel.style.strokeDasharray = L; mel.style.strokeDashoffset = L; }
+    gsap.to('#sheet .staff path', {
+      strokeDashoffset: 0, ease: 'none', stagger: 0.05,
+      scrollTrigger: { trigger: '#why', start: 'top 75%', end: 'center center', scrub: 1 }
+    });
+    if (mel) gsap.to(mel, {
+      strokeDashoffset: 0, ease: 'none',
+      scrollTrigger: { trigger: '#why', start: 'top 60%', end: 'bottom center', scrub: 1 }
+    });
+  }
+
+  setupHeroParallax(){
+    if (this.reduce) return;
+    const gsap = window.gsap;
+    document.querySelectorAll('#hero [data-par]').forEach(el => {
+      const d = parseFloat(el.dataset.par);
+      gsap.to(el, {
+        yPercent: d * 40, ease: 'none',
+        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+      });
+    });
+  }
+
+  setupScrollKeyboard(){
+    const gsap = window.gsap;
+    const strip = document.getElementById('scroll-keys');
+    const sec = document.getElementById('keyboard');
+    if (!strip || !this.scrollWhites.length) return;
+    const stripW = strip.offsetWidth;
+    const viewW = window.innerWidth;
+    const maxX = Math.max(0, stripW - viewW + 120);
+    const W = this.scrollWhites.length;
+    gsap.set(strip, { x: viewW/2 - 60 });
+    window.ScrollTrigger.create({
+      trigger: sec, start: 'top top', end: '+=1700', pin: true, scrub: 0.6,
+      onUpdate: (self) => {
+        const p = self.progress;
+        gsap.set(strip, { x: (viewW/2 - 60) - maxX * p });
+        const idx = Math.min(W-1, Math.max(0, Math.round(p * (W-1))));
+        if (idx !== this.lastIdx){
+          this.lastIdx = idx;
+          const w = this.scrollWhites[idx];
+          this.lightEl(w.glow);
+          this.playMidi(w.midi, 1.4);
+        }
+      }
+    });
+  }
+
+  setupProcess(){
+    const gsap = window.gsap;
+    gsap.to('#proc-line', {
+      scaleX: 1, duration: 1.3, ease: 'power2.out',
+      scrollTrigger: { trigger: '#process', start: 'top 60%' }
+    });
+  }
+
+  setupMap(){
+    const gsap = window.gsap;
+    gsap.from('#map .ring', {
+      scale: 0.4, opacity: 0, transformOrigin: '50% 50%', duration: 1.1, stagger: 0.12, ease: 'power3.out',
+      scrollTrigger: { trigger: '#area', start: 'top 65%' }
+    });
+    gsap.to('#map .mappt', {
+      opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out',
+      scrollTrigger: { trigger: '#area', start: 'top 55%' }
+    });
+  }
+
+  setupTilt(){
+    if (this.reduce) return;
+    const gsap = window.gsap;
+    document.querySelectorAll('.tilt').forEach(el => {
+      const rx = gsap.quickTo(el, 'rotationX', { duration: 0.5, ease: 'power3' });
+      const ry = gsap.quickTo(el, 'rotationY', { duration: 0.5, ease: 'power3' });
+      gsap.set(el, { transformPerspective: 900, transformOrigin: 'center' });
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        ry(px * 9); rx(-py * 9);
+      });
+      el.addEventListener('pointerleave', () => { rx(0); ry(0); });
+    });
+    // service card spotlight + lift
+    document.querySelectorAll('.svc-card').forEach(card => {
+      const spot = card.querySelector('.svc-spot');
+      card.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        spot.style.left = (e.clientX - r.left) + 'px';
+        spot.style.top = (e.clientY - r.top) + 'px';
+      });
+      card.addEventListener('pointerenter', () => { spot.style.opacity = '1'; card.style.background = 'var(--cardHover)'; });
+      card.addEventListener('pointerleave', () => { spot.style.opacity = '0'; card.style.background = 'var(--ink)'; });
+    });
+  }
+
+  setupMagnetic(){
+    if (this.reduce) return;
+    const gsap = window.gsap;
+    document.querySelectorAll('.magnetic').forEach(el => {
+      const xT = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'power3' });
+      const yT = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'power3' });
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        xT((e.clientX - (r.left + r.width/2)) * 0.32);
+        yT((e.clientY - (r.top + r.height/2)) * 0.42);
+      });
+      el.addEventListener('pointerleave', () => { xT(0); yT(0); });
+    });
+  }
+
+  setupSpotlight(){
+    if (this.reduce) return;
+    const gsap = window.gsap;
+    const spot = document.getElementById('sapt-spot');
+    const xT = gsap.quickTo(spot, 'x', { duration: 0.6, ease: 'power2' });
+    const yT = gsap.quickTo(spot, 'y', { duration: 0.6, ease: 'power2' });
+    window.addEventListener('pointermove', (e) => {
+      spot.style.opacity = '1';
+      xT(e.clientX); yT(e.clientY);
+    });
+    window.addEventListener('pointerleave', () => { spot.style.opacity = '0'; });
+  }
+
+  setupFAQ(){
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const q = item.querySelector('.faq-q');
+      const a = item.querySelector('.faq-a');
+      const ic = item.querySelector('.faq-ic');
+      const v = item.querySelector('.faq-v');
+      q.addEventListener('click', () => {
+        const open = item.dataset.open === '1';
+        if (open){
+          a.style.height = '0px'; a.style.opacity = '0';
+          ic.style.transform = 'rotate(0deg)'; v.style.opacity = '1';
+          item.dataset.open = '0';
+        } else {
+          a.style.height = a.scrollHeight + 'px'; a.style.opacity = '1';
+          ic.style.transform = 'rotate(180deg)'; v.style.opacity = '0';
+          item.dataset.open = '1';
+          this.playMidi(64, 1.0);
+        }
+      });
+    });
+  }
+
+  setupCrescendo(){
+    if (this.reduce) return;
+    const gsap = window.gsap;
+    const wave = document.querySelector('#cresc svg');
+    if (wave) gsap.to(wave, {
+      scaleY: 1.6, ease: 'none',
+      scrollTrigger: { trigger: '#book', start: 'top bottom', end: 'center center', scrub: true }
+    });
+  }
+
+  setupSound(){
+    const btn = document.getElementById('sapt-sound');
+    const label = document.getElementById('sapt-sound-label');
+    const dot = document.getElementById('sapt-sound-dot');
+    const sync = () => {
+      label.textContent = this.soundOn ? 'Sound On' : 'Sound Off';
+      dot.style.background = this.soundOn ? 'var(--gold)' : 'rgba(184,184,184,.5)';
+      dot.style.boxShadow = this.soundOn ? '0 0 8px var(--gold)' : 'none';
+    };
+    sync();
+    btn.addEventListener('click', () => {
+      this.soundOn = !this.soundOn;
+      if (this.soundOn){ this.ensureAudio(); this.playMidi(67, 1.2); }
+      sync();
+    });
+  }
+
+  setupAudioGesture(){
+    const resume = () => { this.ensureAudio(); };
+    window.addEventListener('pointerdown', resume, { once: true });
+    window.addEventListener('keydown', resume, { once: true });
+    window.addEventListener('wheel', resume, { once: true, passive: true });
+  }
+}
+
+/* ---- bootstrap: mirrors the DC prototype's default props ---- */
+(function(){
+  const start = () => new Cadence({
+    theme: 'Dark',
+    accentColor: '#D4AF37',
+    motionLevel: 'Maximal',
+    soundOn: true
+  }).componentDidMount();
+  if (document.readyState !== 'loading') start();
+  else document.addEventListener('DOMContentLoaded', start);
+})();
+</script>
+</body>
+</html>
