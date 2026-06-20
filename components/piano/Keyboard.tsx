@@ -54,9 +54,8 @@ export default function Keyboard({
       ctx.fillStyle = "#cda94c";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.font = '600 58px "Playfair Display", Georgia, serif';
-      // letter-spacing fallback: draw spaced manually
-      const text = "C A D E N C E";
+      ctx.font = '600 44px "Playfair Display", Georgia, serif';
+      const text = "Affordable Piano Tuning";
       ctx.fillText(text, 512, 70);
     }
     const t = new THREE.CanvasTexture(c);

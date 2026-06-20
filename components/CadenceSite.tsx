@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { css } from "@/lib/css";
 import { services, cities, mapPoints, faqs, sheetNotes } from "@/lib/data";
+import { SITE } from "@/lib/site";
+import BookingForm from "@/components/BookingForm";
 import { CadenceController } from "@/lib/cadenceController";
 
 // WebGL piano — client-only (no SSR), loaded as its own chunk.
@@ -78,7 +80,7 @@ export default function CadenceSite() {
               <span style={css("width:3px;height:18px;background:var(--gold);border-radius:1px;")} />
               <span style={css("width:3px;height:13px;background:var(--gold);border-radius:1px;")} />
             </span>
-            <span style={css("font-family:'Playfair Display',serif;font-size:19px;font-weight:600;letter-spacing:.02em;")}>Cadence</span>
+            <span style={css("font-family:'Playfair Display',serif;font-size:19px;font-weight:600;letter-spacing:.02em;")}>Affordable Piano Tuning</span>
           </a>
           <nav className="nav-desktop" style={css("display:flex;align-items:center;gap:38px;")}>
             <a href="#services" data-nav style={css("font-size:13.5px;letter-spacing:.04em;color:var(--gray);")}>Services</a>
@@ -140,7 +142,7 @@ export default function CadenceSite() {
         <div style={css("position:relative;z-index:3;max-width:1280px;margin:0 auto;padding:0 var(--gutter);width:100%;")}>
           <div id="hero-eyebrow" style={css("display:flex;align-items:center;gap:14px;margin-bottom:30px;opacity:0;")}>
             <span style={css("width:34px;height:1px;background:var(--gold);")} />
-            <span style={css("font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);")}>San Antonio, Texas · Est. 2009</span>
+            <span style={css("font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);")}>San Antonio, Texas · Est. 2025</span>
           </div>
           <h1 style={css("font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(44px,7.4vw,108px);line-height:1.02;letter-spacing:-.015em;margin:0;max-width:14ch;")}>
             <span className="line" style={css("display:block;overflow:hidden;padding-bottom:.06em;")}>
@@ -281,7 +283,7 @@ export default function CadenceSite() {
           <div>
             <div className="fade" style={css("display:flex;align-items:center;gap:13px;margin-bottom:24px;")}><span style={css("width:30px;height:1px;background:var(--gold);")} /><span style={css("font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);")}>Service Area</span></div>
             <h2 className="fade" style={css("font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.1;margin:0 0 22px;")}>Across San Antonio<span style={css("font-style:italic;color:var(--gold);")}> &amp; the Hill Country</span></h2>
-            <p className="fade" style={css("font-size:16px;line-height:1.7;color:var(--gray);font-weight:300;margin:0 0 36px;max-width:46ch;")}>House calls throughout the metro and surrounding towns — your piano is tuned where it stands.</p>
+            <p className="fade" style={css("font-size:16px;line-height:1.7;color:var(--gray);font-weight:300;margin:0 0 36px;max-width:46ch;")}>House calls throughout San Antonio and the surrounding towns — your piano is tuned where it stands. Traveling farther afield (Austin, New Braunfels, and beyond) is available by arrangement.</p>
             <div id="area-list" className="fade" style={css("display:grid;grid-template-columns:repeat(2,1fr);gap:14px 30px;max-width:420px;")}>
               {cities.map((c) => (
                 <div key={c} style={css("display:flex;align-items:center;gap:11px;font-size:15px;color:var(--ivory);font-weight:300;")}><span style={css("width:5px;height:5px;border-radius:50%;background:var(--gold);")} />{c}</div>
@@ -317,7 +319,7 @@ export default function CadenceSite() {
       {/* ============ TESTIMONIALS (pinned sequential reveal) ============ */}
       <section id="testimonials" style={css("position:relative;height:100vh;overflow:hidden;background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);")}>
         {/* header */}
-        <div style={css("position:absolute;top:96px;left:0;width:100%;display:flex;justify-content:center;z-index:4;")}>
+        <div style={css("position:absolute;top:84px;left:0;width:100%;display:flex;flex-direction:column;align-items:center;gap:14px;z-index:4;")}>
           <div style={css("display:flex;align-items:center;gap:13px;")}>
             <span style={css("width:30px;height:1px;background:var(--gold);")} />
             <span style={css("font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);")}>In Their Words</span>
@@ -326,6 +328,9 @@ export default function CadenceSite() {
               <span style={css("animation:noteBob 2.6s ease-in-out .4s infinite;")}><Note size={16} /></span>
             </span>
           </div>
+          <a href={SITE.reviewsUrl} target="_blank" rel="noopener noreferrer" style={css("display:inline-flex;align-items:center;gap:9px;font-size:13px;letter-spacing:.05em;color:var(--gray);")}>
+            <span style={css("color:var(--gold);letter-spacing:2px;font-size:14px;")}>★★★★★</span> 5.0 on Google
+          </a>
         </div>
 
         {/* stacked slides */}
@@ -340,8 +345,8 @@ export default function CadenceSite() {
                   <path d="M49,22 Q59,40 49,58" stroke="var(--gold)" strokeWidth="2" style={css("transform-origin:49px 40px;animation:swave 1.7s ease-out .55s infinite;opacity:0;")} />
                 </svg>
               </div>
-              <blockquote className="t-quote" style={css("font-family:'Cormorant Garamond','Playfair Display',serif;font-size:clamp(26px,3.6vw,48px);line-height:1.3;font-weight:400;margin:0;color:var(--ivory);")}>Our 1962 Steinway hadn&apos;t sounded like this in twenty years. Tommy found notes I&apos;d forgotten the instrument had.</blockquote>
-              <figcaption className="t-cap" style={css("margin-top:30px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);")}>Margaret H. — Alamo Heights · Home Grand</figcaption>
+              <blockquote className="t-quote" style={css("font-family:'Cormorant Garamond','Playfair Display',serif;font-size:clamp(28px,4vw,52px);line-height:1.3;font-weight:400;margin:0;color:var(--ivory);")}>Awesome service — I enjoy playing my piano now again.</blockquote>
+              <figcaption className="t-cap" style={css("margin-top:30px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);")}>Rafi Sarussi · ★★★★★ on Google</figcaption>
             </div>
           </div>
 
@@ -353,23 +358,8 @@ export default function CadenceSite() {
                   <path className="t-draw" d="M6,22 C18,4 26,40 40,22 C54,4 62,40 76,22 C90,4 98,40 114,22" style={css("transform-origin:center;animation:vstring .5s ease-in-out infinite;")} />
                 </svg>
               </div>
-              <blockquote className="t-quote" style={css("font-family:'Cormorant Garamond','Playfair Display',serif;font-size:clamp(26px,3.6vw,48px);line-height:1.3;font-weight:400;margin:0;color:var(--ivory);")}>He tunes our sanctuary piano before every season. Reliable, unhurried, and the congregation always notices.</blockquote>
-              <figcaption className="t-cap" style={css("margin-top:30px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);")}>Pastor J. Vela — Stone Oak · Church</figcaption>
-            </div>
-          </div>
-
-          {/* slide 3 — metronome */}
-          <div className="t-slide" style={css("position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 var(--gutter);")}>
-            <div style={css("max-width:1000px;width:100%;text-align:center;")}>
-              <div className="t-svg" style={css("display:flex;justify-content:center;margin-bottom:34px;")}>
-                <svg width="60" height="78" viewBox="0 0 62 80" fill="none" stroke="var(--gold)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <path className="t-draw" d="M31,8 L53,72 L9,72 Z" />
-                  <line x1="31" y1="66" x2="31" y2="22" stroke="var(--gold)" strokeWidth="2.5" style={css("transform-origin:31px 66px;animation:swing 1.5s ease-in-out infinite;")} />
-                  <circle cx="31" cy="22" r="3.2" fill="var(--gold)" stroke="none" style={css("transform-origin:31px 66px;animation:swing 1.5s ease-in-out infinite;")} />
-                </svg>
-              </div>
-              <blockquote className="t-quote" style={css("font-family:'Cormorant Garamond','Playfair Display',serif;font-size:clamp(26px,3.6vw,48px);line-height:1.3;font-weight:400;margin:0;color:var(--ivory);")}>As a teacher I&apos;m picky about pitch. My students play better since Cadence took over our studio&apos;s care.</blockquote>
-              <figcaption className="t-cap" style={css("margin-top:30px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);")}>Elena R. — Helotes · Teaching Studio</figcaption>
+              <blockquote className="t-quote" style={css("font-family:'Cormorant Garamond','Playfair Display',serif;font-size:clamp(40px,7vw,80px);letter-spacing:.12em;line-height:1.3;font-weight:400;margin:0;color:var(--gold);")}>★★★★★</blockquote>
+              <figcaption className="t-cap" style={css("margin-top:24px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);")}>Sabrina Del Angel · 5-star Google review</figcaption>
             </div>
           </div>
         </div>
@@ -377,7 +367,6 @@ export default function CadenceSite() {
         {/* progress dots */}
         <div style={css("position:absolute;left:0;bottom:8vh;width:100%;display:flex;justify-content:center;gap:11px;z-index:4;")}>
           <span className="t-dot" style={css("width:24px;height:8px;border-radius:4px;background:var(--gold);transition:width .4s ease,background .4s ease;")} />
-          <span className="t-dot" style={css("width:8px;height:8px;border-radius:4px;background:var(--line2);transition:width .4s ease,background .4s ease;")} />
           <span className="t-dot" style={css("width:8px;height:8px;border-radius:4px;background:var(--line2);transition:width .4s ease,background .4s ease;")} />
         </div>
       </section>
@@ -406,7 +395,7 @@ export default function CadenceSite() {
       </section>
 
       {/* ============ FINAL CTA ============ */}
-      <section id="book" className="panel" style={css("position:relative;padding:160px 0;text-align:center;overflow:hidden;")}>
+      <section id="book" style={css("position:relative;padding:130px 0 120px;text-align:center;overflow:hidden;")}>
         <div id="cresc" style={css("position:absolute;inset:0;z-index:0;opacity:.55;")}>
           <svg width="200%" height="100%" viewBox="0 0 2000 400" preserveAspectRatio="none" style={css("position:absolute;top:50%;left:0;transform:translateY(-50%) scaleY(0.4);transform-origin:center;width:200%;height:80%;animation:waveMove 20s linear infinite;")}>
             <path d="M0,200 C166,80 333,320 500,200 C666,80 833,320 1000,200 C1166,80 1333,320 1500,200 C1666,80 1833,320 2000,200" fill="none" stroke="rgba(212,175,55,.4)" strokeWidth="2" />
@@ -414,14 +403,13 @@ export default function CadenceSite() {
         </div>
         <div style={css("position:absolute;inset:0;z-index:0;background:radial-gradient(70% 120% at 50% 100%,rgba(212,175,55,.1),transparent 60%);")} />
         <div style={css("position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 var(--gutter);")}>
-          <h2 className="fade" style={css("font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(40px,6.4vw,96px);line-height:1.02;letter-spacing:-.015em;margin:0;")}>Bring your piano<br /><span style={css("font-style:italic;color:var(--gold);")}>back to life</span></h2>
-          <p className="fade" style={css("margin:32px auto 0;max-width:40ch;font-size:18px;line-height:1.6;color:var(--gray);font-weight:300;")}>Professional care. Exceptional sound. Local expertise.</p>
-          <div className="fade" style={css("margin-top:46px;display:flex;flex-wrap:wrap;gap:18px;justify-content:center;")}>
-            <a href="tel:+12105550174" className="magnetic" style={css("display:inline-flex;align-items:center;gap:11px;background:var(--gold);color:var(--onGold);padding:19px 36px;border-radius:46px;font-size:16px;font-weight:500;")}>Schedule Your Tuning
-              <span style={css("display:inline-block;width:16px;height:1px;background:var(--onGold);position:relative;")}><span style={css("position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid var(--onGold);border-right:1px solid var(--onGold);transform:rotate(45deg);")} /></span>
-            </a>
-            <a href="tel:+12105550174" className="magnetic" style={css("display:inline-flex;align-items:center;gap:11px;border:1px solid var(--line2);color:var(--ivory);padding:19px 36px;border-radius:46px;font-size:16px;")}>(210) 555-0174</a>
+          <div className="fade" style={css("display:flex;align-items:center;justify-content:center;gap:13px;margin-bottom:22px;")}><span style={css("width:30px;height:1px;background:var(--gold);")} /><span style={css("font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);")}>Request a Tuning</span><span style={css("width:30px;height:1px;background:var(--gold);")} /></div>
+          <h2 className="fade" style={css("font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(38px,5.6vw,82px);line-height:1.04;letter-spacing:-.015em;margin:0;")}>Bring your piano<br /><span style={css("font-style:italic;color:var(--gold);")}>back to life</span></h2>
+          <p className="fade" style={css("margin:28px auto 0;max-width:46ch;font-size:18px;line-height:1.6;color:var(--gray);font-weight:300;")}>Tell us about your piano and where it lives — Tommy will follow up with a clear, honest quote.</p>
+          <div style={css("max-width:620px;margin:50px auto 0;text-align:left;")}>
+            <BookingForm />
           </div>
+          <p style={css("margin:30px auto 0;text-align:center;font-size:15px;color:var(--gray);line-height:1.7;")}>Prefer to talk? Call or text <a href="tel:+19566140078" style={css("color:var(--gold);")}>(956) 614-0078</a> · <a href="mailto:tomasgalvan2000@gmail.com" style={css("color:var(--gold);")}>tomasgalvan2000@gmail.com</a></p>
         </div>
       </section>
 
@@ -431,13 +419,13 @@ export default function CadenceSite() {
           <div>
             <div style={css("display:flex;align-items:center;gap:12px;margin-bottom:18px;")}>
               <span style={css("display:inline-flex;gap:3px;align-items:flex-end;height:20px;")}><span style={css("width:3px;height:9px;background:var(--gold);border-radius:1px;")} /><span style={css("width:3px;height:18px;background:var(--gold);border-radius:1px;")} /><span style={css("width:3px;height:13px;background:var(--gold);border-radius:1px;")} /></span>
-              <span style={css("font-family:'Playfair Display',serif;font-size:21px;font-weight:600;")}>Cadence Piano Service</span>
+              <span style={css("font-family:'Playfair Display',serif;font-size:21px;font-weight:600;")}>Affordable Piano Tuning</span>
             </div>
-            <p style={css("font-size:14.5px;line-height:1.7;color:var(--gray);font-weight:300;max-width:36ch;margin:0;")}>Expert piano tuning, maintenance, and restoration for San Antonio and the surrounding Hill Country since 2009.</p>
+            <p style={css("font-size:14.5px;line-height:1.7;color:var(--gray);font-weight:300;max-width:36ch;margin:0;")}>Expert piano tuning, maintenance, and restoration for San Antonio and the surrounding Hill Country since 2025.</p>
           </div>
           <div>
             <div style={css("font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;")}>Contact</div>
-            <div style={css("font-size:14.5px;line-height:2;color:var(--gray);font-weight:300;")}><a href="tel:+12105550174">(210) 555-0174</a><br /><a href="mailto:hello@cadencepiano.com">hello@cadencepiano.com</a><br />San Antonio, TX</div>
+            <div style={css("font-size:14.5px;line-height:2;color:var(--gray);font-weight:300;")}><a href="tel:+19566140078">(956) 614-0078</a><br /><a href="mailto:tomasgalvan2000@gmail.com">tomasgalvan2000@gmail.com</a><br />San Antonio, TX</div>
           </div>
           <div>
             <div style={css("font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;")}>Service Areas</div>
@@ -445,11 +433,11 @@ export default function CadenceSite() {
           </div>
           <div>
             <div style={css("font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;")}>Follow</div>
-            <div style={css("font-size:14.5px;line-height:2;color:var(--gray);font-weight:300;")}><a href="#book" data-nav>Instagram</a><br /><a href="#book" data-nav>Facebook</a><br /><a href="#book" data-nav>YouTube</a></div>
+            <div style={css("font-size:14.5px;line-height:2;color:var(--gray);font-weight:300;")}><a href="https://www.instagram.com/tommytunessatx" target="_blank" rel="noopener noreferrer">Instagram</a><br /><a href="https://www.tiktok.com/@tommytunessatx" target="_blank" rel="noopener noreferrer">TikTok</a><br /><a href="https://www.youtube.com/@tommytunessatx" target="_blank" rel="noopener noreferrer">YouTube</a><br /><a href="https://www.threads.net/@tommytunessatx" target="_blank" rel="noopener noreferrer">Threads</a></div>
           </div>
         </div>
         <div style={css("max-width:1280px;margin:54px auto 0;padding:24px 40px 0;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12.5px;color:var(--gray);letter-spacing:.04em;")}>
-          <span>© 2026 Cadence Piano Service. All rights reserved.</span>
+          <span>© 2026 Affordable Piano Tuning. All rights reserved.</span>
           <span>Piano Tuning · Repair · Maintenance — San Antonio, Texas</span>
         </div>
       </footer>

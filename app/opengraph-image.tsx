@@ -30,7 +30,7 @@ export default function OpengraphImage() {
             <div style={{ width: 8, height: 40, background: "#D4AF37", borderRadius: 3 }} />
             <div style={{ width: 8, height: 30, background: "#D4AF37", borderRadius: 3 }} />
           </div>
-          <div style={{ fontSize: 38, fontWeight: 600, letterSpacing: 1 }}>Cadence</div>
+          <div style={{ fontSize: 36, fontWeight: 600, letterSpacing: 0.5 }}>Affordable Piano Tuning</div>
         </div>
 
         {/* headline */}
@@ -44,7 +44,7 @@ export default function OpengraphImage() {
               color: "#D4AF37",
             }}
           >
-            San Antonio, Texas · Est. 2009
+            San Antonio, Texas · Est. 2025
           </div>
           <div style={{ display: "flex", fontSize: 84, fontWeight: 700, lineHeight: 1.05 }}>
             Expert Piano Tuning

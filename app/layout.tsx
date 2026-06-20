@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
     default: SITE.title,
-    template: "%s · Cadence Piano Service",
+    template: "%s · Affordable Piano Tuning",
   },
   description: SITE.description,
   applicationName: SITE.name,
@@ -94,7 +94,22 @@ const jsonLd = {
     "Piano maintenance",
     "Piano voicing",
     "Tone regulation",
+    "Piano cleaning",
+    "Piano detailing",
     "Piano repair",
+  ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: SITE.ratingValue,
+    reviewCount: SITE.reviewCount,
+    bestRating: 5,
+  },
+  sameAs: [
+    SITE.social.youtube,
+    SITE.social.tiktok,
+    SITE.social.instagram,
+    SITE.social.threads,
+    SITE.reviewsUrl,
   ],
   slogan: "Expert piano tuning in San Antonio, Texas.",
 };

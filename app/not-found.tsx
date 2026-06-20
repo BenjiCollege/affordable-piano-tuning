@@ -23,7 +23,7 @@ export default function NotFound() {
           <span style={{ width: 4, height: 14, background: "var(--gold)", borderRadius: 1 }} />
         </span>
         <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 21, fontWeight: 600 }}>
-          Cadence
+          Affordable Piano Tuning
         </span>
       </div>
 

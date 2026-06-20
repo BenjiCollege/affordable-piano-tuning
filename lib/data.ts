@@ -59,22 +59,22 @@ export type Faq = { q: string; a: string };
 export const faqs: Faq[] = [
   {
     q: "How often should my piano be tuned?",
-    a: "Most pianos do best with two tunings a year — typically after the heating season and after the humid summer. New pianos and heavily-played instruments may want more frequent visits.",
+    a: "Typically once a year. Pianos played more often — for church services or recitals — or instruments that have gone a long time since their last servicing may need tuning more frequently.",
   },
   {
     q: "How long does a tuning take?",
-    a: "A standard tuning takes about 90 minutes. If the piano has dropped well below pitch, a pitch raise adds time, which I will always explain before starting.",
+    a: "Anywhere from 2 to 4 hours, depending heavily on the condition of the piano. I will let you know what to expect before I start.",
+  },
+  {
+    q: "Do you do more than tuning?",
+    a: "Yes — interior and exterior cleaning, polishing, and detailing, as well as repairs to damaged strings, keys, and other parts.",
   },
   {
     q: "Will my piano hold its tune?",
-    a: "A stable, well-maintained piano in a climate-controlled room holds pitch beautifully between seasonal visits. I will share simple humidity tips for your space.",
-  },
-  {
-    q: "Do you service every kind of piano?",
-    a: "Yes — uprights, baby grands, and concert grands, in homes, churches, schools, studios, and venues throughout the San Antonio area.",
+    a: "A stable, well-maintained piano in a climate-controlled room holds pitch beautifully between visits. I'm happy to share simple humidity tips for your space.",
   },
   {
     q: "What does a visit cost?",
-    a: "Pricing depends on the instrument and its condition. Reach out with a few details and I will give you a clear, honest quote before we book.",
+    a: "Pricing depends on the instrument and its condition. Reach out with a few details and I'll give you a clear, honest quote before we book.",
   },
 ];
