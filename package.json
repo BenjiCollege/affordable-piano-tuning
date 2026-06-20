@@ -1,8 +1,8 @@
 {
-  "name": "cadence-piano-service",
+  "name": "affordable-piano-tuning",
   "version": "1.0.0",
   "private": true,
-  "description": "Cadence Piano Service — expert piano tuning in San Antonio, Texas.",
+  "description": "Affordable Piano Tuning — expert piano tuning in San Antonio, Texas.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

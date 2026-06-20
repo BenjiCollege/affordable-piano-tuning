@@ -6,7 +6,7 @@ import { css } from "@/lib/css";
 import { services, cities, mapPoints, faqs, sheetNotes } from "@/lib/data";
 import { SITE } from "@/lib/site";
 import BookingForm from "@/components/BookingForm";
-import { CadenceController } from "@/lib/cadenceController";
+import { APTController } from "@/lib/aptController";
 
 // WebGL piano — client-only (no SSR), loaded as its own chunk.
 const Piano3D = dynamic(() => import("@/components/Piano3D"), { ssr: false });
@@ -29,11 +29,11 @@ function Note({ size = 16, className }: { size?: number; className?: string }) {
   );
 }
 
-export default function CadenceSite() {
+export default function APTSite() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    let controller: CadenceController | null = null;
+    let controller: APTController | null = null;
     let cancelled = false;
 
     (async () => {
@@ -47,7 +47,7 @@ export default function CadenceSite() {
       const ScrollTrigger = (stMod as any).ScrollTrigger || stMod.default;
       const Lenis = lenisMod.default;
 
-      controller = new CadenceController(
+      controller = new APTController(
         {
           theme: "Light",
           accentColor: "#D4AF37",
@@ -244,7 +244,7 @@ export default function CadenceSite() {
         <div className="about-grid" style={css("max-width:1280px;margin:0 auto;padding:0 var(--gutter);display:grid;grid-template-columns:0.85fr 1fr;gap:80px;align-items:center;")}>
           <div className="fade tilt" style={css("position:relative;")}>
             <div style={css("position:relative;border-radius:4px;overflow:hidden;border:1px solid var(--line);background:repeating-linear-gradient(135deg,var(--ink2) 0 14px,var(--ink3) 14px 28px);aspect-ratio:4/5;display:flex;align-items:flex-end;")}>
-              <div style={css("position:absolute;inset:0;display:flex;align-items:center;justify-content:center;")}><span style={css("font-family:'JetBrains Mono',monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);")}>technician portrait</span></div>
+              <img src="/piano-technician.jpg" alt="Tommy Galvan, piano technician" style={css("position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;")} />
               <div style={css("position:relative;width:100%;padding:24px;background:linear-gradient(transparent,var(--scrim));")}><div style={css("font-family:'Playfair Display',serif;font-size:22px;")}>Tommy Galvan</div><div style={css("font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:5px;")}>Piano Technician</div></div>
             </div>
           </div>

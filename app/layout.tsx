@@ -126,7 +126,7 @@ export default function RootLayout({
             Default (no stored choice) stays light. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('cadence-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}`,
+            __html: `try{var t=localStorage.getItem('apt-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}`,
           }}
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

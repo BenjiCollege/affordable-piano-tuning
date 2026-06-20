@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cadence Piano Service — Expert Piano Tuning in San Antonio, Texas</title>
+<title>Affordable Piano Tuning — Expert Piano Tuning in San Antonio, Texas</title>
 <meta name="description" content="Expert piano tuning, maintenance, and restoration for homes, churches, schools, studios, and stages across San Antonio and the Hill Country since 2009.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +49,7 @@ a{color:inherit;text-decoration:none;}
           <span style="width:3px;height:18px;background:var(--gold);border-radius:1px;"></span>
           <span style="width:3px;height:13px;background:var(--gold);border-radius:1px;"></span>
         </span>
-        <span style="font-family:'Playfair Display',serif;font-size:19px;font-weight:600;letter-spacing:.02em;">Cadence</span>
+        <span style="font-family:'Playfair Display',serif;font-size:19px;font-weight:600;letter-spacing:.02em;">Affordable Piano Tuning</span>
       </a>
       <nav style="display:flex;align-items:center;gap:38px;">
         <a href="#services" data-nav style="font-size:13.5px;letter-spacing:.04em;color:var(--gray);">Services</a>
@@ -260,7 +260,7 @@ a{color:inherit;text-decoration:none;}
         </figure>
         <figure class="fade" style="margin:0;max-width:62%;">
           <div style="font-family:'Playfair Display',serif;font-size:54px;line-height:1;color:var(--gold);height:20px;">&ldquo;</div>
-          <blockquote style="font-family:'Cormorant Garamond','Playfair Display',serif;font-size:clamp(24px,3vw,40px);line-height:1.3;font-weight:400;margin:0;color:var(--ivory);">As a teacher I'm picky about pitch. My students play better since Cadence took over our studio's care.</blockquote>
+          <blockquote style="font-family:'Cormorant Garamond','Playfair Display',serif;font-size:clamp(24px,3vw,40px);line-height:1.3;font-weight:400;margin:0;color:var(--ivory);">As a teacher I'm picky about pitch. My students play better since Affordable Piano Tuning took over our studio's care.</blockquote>
           <figcaption style="margin-top:26px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);">Elena R. — Helotes · Teaching Studio</figcaption>
         </figure>
       </div>
@@ -304,13 +304,13 @@ a{color:inherit;text-decoration:none;}
       <div>
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
           <span style="display:inline-flex;gap:3px;align-items:flex-end;height:20px;"><span style="width:3px;height:9px;background:var(--gold);border-radius:1px;"></span><span style="width:3px;height:18px;background:var(--gold);border-radius:1px;"></span><span style="width:3px;height:13px;background:var(--gold);border-radius:1px;"></span></span>
-          <span style="font-family:'Playfair Display',serif;font-size:21px;font-weight:600;">Cadence Piano Service</span>
+          <span style="font-family:'Playfair Display',serif;font-size:21px;font-weight:600;">Affordable Piano Tuning</span>
         </div>
         <p style="font-size:14.5px;line-height:1.7;color:var(--gray);font-weight:300;max-width:36ch;margin:0;">Expert piano tuning, maintenance, and restoration for San Antonio and the surrounding Hill Country since 2009.</p>
       </div>
       <div>
         <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Contact</div>
-        <div style="font-size:14.5px;line-height:2;color:var(--gray);font-weight:300;"><a href="tel:+12105550174">(210) 555-0174</a><br><a href="mailto:hello@cadencepiano.com">hello@cadencepiano.com</a><br>San Antonio, TX</div>
+        <div style="font-size:14.5px;line-height:2;color:var(--gray);font-weight:300;"><a href="tel:+12105550174">(210) 555-0174</a><br><a href="mailto:hello@affordablepianotuning.com">hello@affordablepianotuning.com</a><br>San Antonio, TX</div>
       </div>
       <div>
         <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Service Areas</div>
@@ -322,7 +322,7 @@ a{color:inherit;text-decoration:none;}
       </div>
     </div>
     <div style="max-width:1280px;margin:54px auto 0;padding:24px 40px 0;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12.5px;color:var(--gray);letter-spacing:.04em;">
-      <span>© 2026 Cadence Piano Service. All rights reserved.</span>
+      <span>© 2026 Affordable Piano Tuning. All rights reserved.</span>
       <span>Piano Tuning · Repair · Maintenance — San Antonio, Texas</span>
     </div>
   </footer>
@@ -331,12 +331,12 @@ a{color:inherit;text-decoration:none;}
 
 <script>
 /* ============================================================
-   Cadence Piano Service — standalone implementation
+   Affordable Piano Tuning — standalone implementation
    Recreated from the Claude Design DC prototype. All behavior
    (GSAP/Lenis scroll, Web Audio piano, theme + sound toggles,
    parallax, magnetic buttons, scroll-driven keyboard) preserved.
    ============================================================ */
-class Cadence {
+class AffordablePianoTuning {
   constructor(props){ this.props = props || {}; }
 
   componentDidMount(){
@@ -344,7 +344,7 @@ class Cadence {
     this.accent = p.accentColor || '#D4AF37';
     if (this.accent && this.accent.toLowerCase() !== '#d4af37') document.documentElement.style.setProperty('--gold', this.accent);
     let t = (p.theme || 'Dark').toString().toLowerCase();
-    try { const s = localStorage.getItem('cadence-theme'); if (s) t = s; } catch(e){}
+    try { const s = localStorage.getItem('apt-theme'); if (s) t = s; } catch(e){}
     this.theme = t === 'light' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', this.theme);
     const lvl = p.motionLevel || 'Balanced';
@@ -647,7 +647,7 @@ class Cadence {
       }
       if (spot) spot.style.mixBlendMode = this.theme === 'light' ? 'multiply' : 'screen';
       if (this.syncHeader) this.syncHeader();
-      if (persist){ try { localStorage.setItem('cadence-theme', this.theme); } catch(e){} }
+      if (persist){ try { localStorage.setItem('apt-theme', this.theme); } catch(e){} }
     };
     apply(this.theme, false);
     if (btn) btn.addEventListener('click', () => {
@@ -881,7 +881,7 @@ class Cadence {
 
 /* ---- bootstrap: mirrors the DC prototype's default props ---- */
 (function(){
-  const start = () => new Cadence({
+  const start = () => new AffordablePianoTuning({
     theme: 'Dark',
     accentColor: '#D4AF37',
     motionLevel: 'Maximal',

@@ -43,7 +43,7 @@ export default function Keyboard({
   const groupRefs = useRef<Map<number, THREE.Group>>(new Map());
   const matRefs = useRef<Map<number, THREE.MeshPhysicalMaterial>>(new Map());
 
-  // gold "Cadence" fallboard branding (canvas texture — no external font fetch)
+  // gold "Affordable Piano Tuning" fallboard branding (canvas texture — no external font fetch)
   const brand = useMemo(() => {
     const c = document.createElement("canvas");
     c.width = 1024;

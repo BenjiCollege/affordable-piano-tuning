@@ -163,12 +163,12 @@ function PianoScene({
 type Phase = "idle" | "enter" | "play" | "exit";
 
 function lockScroll() {
-  const lenis = (window as { __cadenceLenis?: { stop: () => void } }).__cadenceLenis;
+  const lenis = (window as { __aptLenis?: { stop: () => void } }).__aptLenis;
   if (lenis) lenis.stop();
   document.documentElement.style.overflow = "hidden";
 }
 function unlockScroll() {
-  const lenis = (window as { __cadenceLenis?: { start: () => void } }).__cadenceLenis;
+  const lenis = (window as { __aptLenis?: { start: () => void } }).__aptLenis;
   if (lenis) lenis.start();
   document.documentElement.style.overflow = "";
 }

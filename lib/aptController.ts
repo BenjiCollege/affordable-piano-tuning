@@ -1,5 +1,5 @@
 /* ============================================================
-   Cadence Piano Service — interaction controller.
+   Affordable Piano Tuning — interaction controller.
    Ported from the Claude Design DC prototype's Component class.
    Owns all imperative behavior: Web Audio piano synthesis, the
    GSAP/ScrollTrigger timelines, Lenis smooth scroll, the
@@ -18,14 +18,14 @@ import { setSoundEnabled } from "./pianoAudio";
 
 export type MotionLevel = "Subtle" | "Balanced" | "Maximal";
 
-export interface CadenceProps {
+export interface APTProps {
   theme?: "Dark" | "Light";
   accentColor?: string;
   motionLevel?: MotionLevel;
   soundOn?: boolean;
 }
 
-export interface CadenceLibs {
+export interface APTLibs {
   gsap: any;
   ScrollTrigger: any;
   Lenis: any;
@@ -37,8 +37,8 @@ interface WhiteKey {
   el: HTMLDivElement;
 }
 
-export class CadenceController {
-  props: CadenceProps;
+export class APTController {
+  props: APTProps;
   gsap: any;
   ST: any;
   Lenis: any;
@@ -60,7 +60,7 @@ export class CadenceController {
   syncHeader?: () => void;
   private cleanups: Array<() => void> = [];
 
-  constructor(props: CadenceProps, libs: CadenceLibs) {
+  constructor(props: APTProps, libs: APTLibs) {
     this.props = props || {};
     this.gsap = libs.gsap;
     this.ST = libs.ScrollTrigger;
@@ -75,7 +75,7 @@ export class CadenceController {
       document.documentElement.style.setProperty("--gold", this.accent);
     let t = (p.theme || "Dark").toString().toLowerCase();
     try {
-      const s = localStorage.getItem("cadence-theme");
+      const s = localStorage.getItem("apt-theme");
       if (s) t = s;
     } catch {}
     this.theme = t === "light" ? "light" : "dark";
@@ -107,8 +107,8 @@ export class CadenceController {
     } catch {}
     try {
       if (this.lenis) this.lenis.destroy();
-      if ((window as any).__cadenceLenis === this.lenis)
-        (window as any).__cadenceLenis = null;
+      if ((window as any).__aptLenis === this.lenis)
+        (window as any).__aptLenis = null;
     } catch {}
     try {
       if (this.ST) this.ST.getAll().forEach((tr: any) => tr.kill());
@@ -302,7 +302,7 @@ export class CadenceController {
       });
       this.lenis = lenis;
       // expose for the WebGL piano so it can lock/unlock scroll in play mode
-      (window as any).__cadenceLenis = lenis;
+      (window as any).__aptLenis = lenis;
       lenis.on("scroll", ST.update);
       this.tickerFn = (t: number) => lenis.raf(t * 1000);
       gsap.ticker.add(this.tickerFn);
@@ -435,7 +435,7 @@ export class CadenceController {
       if (this.syncHeader) this.syncHeader();
       if (persist) {
         try {
-          localStorage.setItem("cadence-theme", this.theme);
+          localStorage.setItem("apt-theme", this.theme);
         } catch {}
       }
     };
