@@ -1,4 +1,4 @@
-import CadenceSite from "@/components/CadenceSite";
+import CadenceSite from "@/components/APTSite";
 
 export default function Home() {
   return <CadenceSite />;
