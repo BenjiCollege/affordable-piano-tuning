@@ -6,13 +6,17 @@
 export const SITE = {
   url: (
     process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://affordablepianotuning.com")
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "https://affordablepianotuning.com")
   ).replace(/\/$/, ""),
   name: "Affordable Piano Tuning",
   shortName: "APT",
-  title: "Affordable Piano Tuning — Expert Piano Tuning in San Antonio, Texas",
+  title: "Affordable Piano Tuning — Piano Tuning & Repair in San Antonio, Texas",
   description:
-    "Expert piano tuning, maintenance, and restoration for homes, churches, schools, studios, and the stages where music lives. Serving San Antonio and the Hill Country since 2025.",
+    "Affordable, honest piano tuning, maintenance, and repair for homes, churches, schools, and studios. Serving San Antonio and the Hill Country since 2025.",
   phone: "+19566140078",
   phoneDisplay: "(956) 614-0078",
   email: "tomasgalvan2000@gmail.com",

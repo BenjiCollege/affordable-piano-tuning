@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
@@ -16,11 +17,11 @@ export const metadata: Metadata = {
     "piano tuning San Antonio",
     "piano maintenance",
     "piano repair",
-    "piano restoration",
+    "affordable piano tuning",
     "piano voicing",
     "concert grand tuning",
     "Hill Country piano service",
-    "registered piano technician",
+    "mobile piano tuner",
   ],
   authors: [{ name: SITE.name }],
   creator: SITE.name,
@@ -111,7 +112,7 @@ const jsonLd = {
     SITE.social.threads,
     SITE.reviewsUrl,
   ],
-  slogan: "Expert piano tuning in San Antonio, Texas.",
+  slogan: "Affordable, honest piano tuning in San Antonio, Texas.",
 };
 
 export default function RootLayout({
@@ -140,7 +141,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

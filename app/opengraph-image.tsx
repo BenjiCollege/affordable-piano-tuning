@@ -47,7 +47,7 @@ export default function OpengraphImage() {
             San Antonio, Texas · Est. 2025
           </div>
           <div style={{ display: "flex", fontSize: 84, fontWeight: 700, lineHeight: 1.05 }}>
-            Expert Piano Tuning
+            Affordable Piano Tuning
           </div>
           <div style={{ display: "flex", fontSize: 84, fontWeight: 700, lineHeight: 1.05, color: "#D4AF37" }}>
             in San Antonio

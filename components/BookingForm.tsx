@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { track } from "@vercel/analytics/react";
 import { SITE } from "@/lib/site";
 
 /* Option lists mirror Tommy's intake form (with pricing). */
@@ -73,6 +74,7 @@ export default function BookingForm() {
       const res = await fetch("/api/book", { method: "POST", body: new FormData(formEl) });
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
       if (res.ok && data.ok) {
+        track("booking_submitted");
         setStatus("sent");
         formEl.reset();
       } else {
@@ -124,8 +126,25 @@ export default function BookingForm() {
       </div>
 
       <div className="book-field">
-        <label className="book-q" htmlFor="bf-email">Email <span>(optional — so we can reply)</span></label>
+        <label className="book-q" htmlFor="bf-email">Email <span>(optional — so we can reply &amp; confirm)</span></label>
         <input id="bf-email" className="book-input" name="email" type="email" placeholder="you@email.com" />
+      </div>
+
+      <div className="book-field">
+        <label className="book-q" htmlFor="bf-date">Preferred date <span>(optional)</span></label>
+        <input id="bf-date" className="book-input" name="preferredDate" type="date" />
+      </div>
+
+      <div className="book-field">
+        <label className="book-q">Preferred time <span>(optional)</span></label>
+        <div className="book-opts">
+          {["Morning", "Afternoon", "Evening", "Flexible"].map((opt) => (
+            <label key={opt} className="book-opt">
+              <input type="radio" name="preferredTime" value={opt} />
+              {opt}
+            </label>
+          ))}
+        </div>
       </div>
 
       <RadioGroup {...RADIOS[1]} />

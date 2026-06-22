@@ -200,7 +200,7 @@ export default function Piano3D() {
   };
 
   const enter = () => {
-    if (phaseRef.current !== "idle") return;
+    if (!started || phaseRef.current !== "idle") return;
     setPhase("enter");
     lockScroll();
     fadeChrome(true);
@@ -251,22 +251,28 @@ export default function Piano3D() {
           "radial-gradient(120% 100% at 50% 22%, #1c1b22 0%, #111017 45%, #050507 100%)",
       }}
     >
-      <Canvas
-        style={{ position: "absolute", inset: 0, zIndex: 1 }}
-        dpr={[1, mobile ? 1.5 : 2]}
-        gl={{ alpha: true, antialias: true }}
-        camera={{ fov: mobile ? 52 : 38, position: [2.5, 1.95, 5.6], near: 0.05, far: 100 }}
-        frameloop={frameloop}
-      >
-        <PianoScene
-          camState={camState}
-          playingRef={playingRef}
-          phaseRef={phaseRef}
-          started={started}
-          reflections={!mobile}
-          mobile={mobile}
-        />
-      </Canvas>
+      {/* The WebGL context + all geometry are only created once the keyboard
+          section nears the viewport (`started`), so they never cost anything
+          on initial page load far above this section. The radial-gradient
+          backdrop on the parent acts as the placeholder until then. */}
+      {started && (
+        <Canvas
+          style={{ position: "absolute", inset: 0, zIndex: 1 }}
+          dpr={[1, mobile ? 1.5 : 2]}
+          gl={{ alpha: true, antialias: true }}
+          camera={{ fov: mobile ? 52 : 38, position: [2.5, 1.95, 5.6], near: 0.05, far: 100 }}
+          frameloop={frameloop}
+        >
+          <PianoScene
+            camState={camState}
+            playingRef={playingRef}
+            phaseRef={phaseRef}
+            started={started}
+            reflections={!mobile}
+            mobile={mobile}
+          />
+        </Canvas>
+      )}
 
       {/* idle: click to play */}
       <button

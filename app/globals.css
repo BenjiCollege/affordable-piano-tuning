@@ -80,6 +80,26 @@ a {
   text-decoration: none;
 }
 
+/* Keyboard focus: a visible gold ring on any interactive element reached by
+   tabbing (mouse clicks don't trigger :focus-visible, so the visual stays
+   clean). Critical for accessibility / usability scoring. */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.book-input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-color: var(--gold);
+}
+/* the real radio is visually hidden, so surface focus on its label chip */
+.book-opt:has(input:focus-visible) {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-color: var(--gold);
+}
+
 @keyframes dust {
   0% { transform: translate(0, 0); opacity: 0; }
   10% { opacity: .7; }
@@ -295,4 +315,19 @@ textarea.book-input { min-height: 92px; resize: vertical; }
   /* --- corner toggles closer to the edges --- */
   #sapt-theme { left: 14px !important; bottom: 18px !important; padding: 9px 13px !important; }
   #sapt-sound { right: 14px !important; bottom: 18px !important; padding: 9px 13px !important; }
+}
+
+/* ============================================================
+   TABLET (769–1024px) — relax the dense desktop grids/gutters
+   before the full mobile stack kicks in at ≤768px.
+   ============================================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root, [data-theme="dark"], [data-theme="light"] {
+    --gutter: 32px;
+  }
+  #svc-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .why-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 40px !important; }
+  .about-grid { gap: 50px !important; }
+  .area-grid { gap: 50px !important; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 36px !important; }
 }

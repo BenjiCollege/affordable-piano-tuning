@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { track } from "@vercel/analytics/react";
 import dynamic from "next/dynamic";
 import { css } from "@/lib/css";
 import { services, cities, mapPoints, faqs, sheetNotes } from "@/lib/data";
@@ -88,7 +89,7 @@ export default function APTSite() {
             <a href="#about" data-nav style={css("font-size:13.5px;letter-spacing:.04em;color:var(--gray);")}>About</a>
             <a href="#area" data-nav style={css("font-size:13.5px;letter-spacing:.04em;color:var(--gray);")}>Service Area</a>
             <a href="#faq" data-nav style={css("font-size:13.5px;letter-spacing:.04em;color:var(--gray);")}>FAQ</a>
-            <a href="#book" data-nav className="magnetic" style={css("display:inline-flex;align-items:center;gap:9px;font-size:13.5px;letter-spacing:.04em;color:var(--onGold);background:var(--gold);padding:11px 20px;border-radius:40px;font-weight:500;")}>Book Your Tuning</a>
+            <a href="#book" data-nav onClick={() => track("book_cta", { location: "header" })} className="magnetic" style={css("display:inline-flex;align-items:center;gap:9px;font-size:13.5px;letter-spacing:.04em;color:var(--onGold);background:var(--gold);padding:11px 20px;border-radius:40px;font-weight:500;")}>Book Your Tuning</a>
           </nav>
           {/* mobile hamburger */}
           <button className="nav-burger" aria-label="Open menu" onClick={() => setMobileOpen(true)} style={css("display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;")}>
@@ -146,7 +147,7 @@ export default function APTSite() {
           </div>
           <h1 style={css("font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(44px,7.4vw,108px);line-height:1.02;letter-spacing:-.015em;margin:0;max-width:14ch;")}>
             <span className="line" style={css("display:block;overflow:hidden;padding-bottom:.06em;")}>
-              <span className="reveal-i" style={css("display:inline-block;transform:translateY(118%);")}>Expert</span>{" "}
+              <span className="reveal-i" style={css("display:inline-block;transform:translateY(118%);")}>Affordable</span>{" "}
               <span className="reveal-i" style={css("display:inline-block;transform:translateY(118%);")}>Piano</span>{" "}
               <span className="reveal-i" style={css("display:inline-block;transform:translateY(118%);")}>Tuning</span>
             </span>
@@ -156,9 +157,9 @@ export default function APTSite() {
               <span className="reveal-i" style={css("display:inline-block;transform:translateY(118%);font-style:italic;color:var(--gold);")}>Antonio</span>
             </span>
           </h1>
-          <p id="hero-sub" style={css("margin:34px 0 0;max-width:46ch;font-size:clamp(16px,1.5vw,20px);line-height:1.6;color:var(--gray);font-weight:300;opacity:0;")}>Precision tuning, maintenance, and restoration for homes, churches, schools, studios, and the stages where music lives.</p>
+          <p id="hero-sub" style={css("margin:34px 0 0;max-width:46ch;font-size:clamp(16px,1.5vw,20px);line-height:1.6;color:var(--gray);font-weight:300;opacity:0;")}>Careful tuning, maintenance, and repair for homes, churches, schools, studios, and the stages where music lives.</p>
           <div id="hero-cta" style={css("display:flex;flex-wrap:wrap;gap:18px;margin-top:42px;opacity:0;")}>
-            <a href="#book" data-nav className="magnetic" style={css("display:inline-flex;align-items:center;gap:11px;background:var(--gold);color:var(--onGold);padding:17px 30px;border-radius:46px;font-size:15px;font-weight:500;letter-spacing:.01em;")}>Book Your Tuning
+            <a href="#book" data-nav onClick={() => track("book_cta", { location: "hero" })} className="magnetic" style={css("display:inline-flex;align-items:center;gap:11px;background:var(--gold);color:var(--onGold);padding:17px 30px;border-radius:46px;font-size:15px;font-weight:500;letter-spacing:.01em;")}>Book Your Tuning
               <span style={css("display:inline-block;width:16px;height:1px;background:var(--onGold);position:relative;")}><span style={css("position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid var(--onGold);border-right:1px solid var(--onGold);transform:rotate(45deg);")} /></span>
             </a>
             <a href="#services" data-nav className="magnetic" style={css("display:inline-flex;align-items:center;gap:11px;border:1px solid var(--line2);color:var(--ivory);padding:17px 30px;border-radius:46px;font-size:15px;font-weight:400;")}>Explore Services</a>
@@ -244,17 +245,17 @@ export default function APTSite() {
         <div className="about-grid" style={css("max-width:1280px;margin:0 auto;padding:0 var(--gutter);display:grid;grid-template-columns:0.85fr 1fr;gap:80px;align-items:center;")}>
           <div className="fade tilt" style={css("position:relative;")}>
             <div style={css("position:relative;border-radius:4px;overflow:hidden;border:1px solid var(--line);background:repeating-linear-gradient(135deg,var(--ink2) 0 14px,var(--ink3) 14px 28px);aspect-ratio:4/5;display:flex;align-items:flex-end;")}>
-              <img src="/piano-technician.jpg" alt="Tommy Galvan, piano technician" style={css("position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;")} />
-              <div style={css("position:relative;width:100%;padding:24px;background:linear-gradient(transparent,var(--scrim));")}><div style={css("font-family:'Playfair Display',serif;font-size:22px;")}>Tommy Galvan</div><div style={css("font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:5px;")}>Piano Technician</div></div>
+              <img src="/piano-technician.jpg" alt="Tommy Galvan, piano tuner and music educator" style={css("position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;")} />
+              <div style={css("position:relative;width:100%;padding:24px;background:linear-gradient(transparent,var(--scrim));")}><div style={css("font-family:'Playfair Display',serif;font-size:22px;")}>Tommy Galvan</div><div style={css("font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:5px;")}>Piano Tuner &amp; Music Educator</div></div>
             </div>
           </div>
           <div>
-            <div className="fade" style={css("display:flex;align-items:center;gap:13px;margin-bottom:24px;")}><span style={css("width:30px;height:1px;background:var(--gold);")} /><span style={css("font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);")}>The Technician</span></div>
-            <h2 className="fade" style={css("font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.1;margin:0 0 28px;")}>Trained by ear,<span style={css("font-style:italic;color:var(--gold);")}> guided by patience</span></h2>
-            <p className="fade" style={css("font-size:16.5px;line-height:1.75;color:var(--gray);font-weight:300;margin:0 0 20px;max-width:52ch;")}>I came to tuning the long way — first as a player, then as an apprentice who couldn&apos;t stop chasing the perfect unison. For years I&apos;ve cared for instruments across San Antonio, from upright pianos in living rooms to concert grands on church platforms.</p>
-            <p className="fade" style={css("font-size:16.5px;line-height:1.75;color:var(--gray);font-weight:300;margin:0 0 34px;max-width:52ch;")}>My philosophy is simple: treat every piano as if it were the only one, and leave it sounding like its best self.</p>
+            <div className="fade" style={css("display:flex;align-items:center;gap:13px;margin-bottom:24px;")}><span style={css("width:30px;height:1px;background:var(--gold);")} /><span style={css("font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);")}>Meet Tommy</span></div>
+            <h2 className="fade" style={css("font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(30px,4vw,52px);line-height:1.1;margin:0 0 28px;")}>From the classroom,<span style={css("font-style:italic;color:var(--gold);")}> to your keyboard</span></h2>
+            <p className="fade" style={css("font-size:16.5px;line-height:1.75;color:var(--gray);font-weight:300;margin:0 0 20px;max-width:52ch;")}>I came to piano tuning from the classroom. I taught music at a Title I middle school here in San Antonio, pouring everything I had into my students — until the program was cut. I wasn&apos;t ready to leave these instruments behind, so I picked up the tuning hammer and began caring for pianos across the city.</p>
+            <p className="fade" style={css("font-size:16.5px;line-height:1.75;color:var(--gray);font-weight:300;margin:0 0 34px;max-width:52ch;")}>I&apos;m newer to tuning than the long-time hands in town, and I treat that as a reason to be more careful, not less. Every piano gets my full attention, honest and affordable pricing, and the same ear I brought to a room full of young musicians — with the simple goal of leaving your piano sounding like its best self.</p>
             <div className="fade" style={css("display:flex;gap:46px;")}>
-              <div><div style={css("font-family:'Playfair Display',serif;font-size:30px;color:var(--ivory);")}>RPT</div><div style={css("font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-top:6px;")}>PTG Certified</div></div>
+              <div><div style={css("font-family:'Playfair Display',serif;font-size:30px;color:var(--ivory);")}>Music</div><div style={css("font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-top:6px;")}>Educator</div></div>
               <div><div style={css("font-family:'Playfair Display',serif;font-size:30px;color:var(--ivory);")}>A&nbsp;440</div><div style={css("font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-top:6px;")}>Concert Standard</div></div>
             </div>
           </div>
@@ -409,7 +410,7 @@ export default function APTSite() {
           <div style={css("max-width:620px;margin:50px auto 0;text-align:left;")}>
             <BookingForm />
           </div>
-          <p style={css("margin:30px auto 0;text-align:center;font-size:15px;color:var(--gray);line-height:1.7;")}>Prefer to talk? Call or text <a href="tel:+19566140078" style={css("color:var(--gold);")}>(956) 614-0078</a> · <a href="mailto:tomasgalvan2000@gmail.com" style={css("color:var(--gold);")}>tomasgalvan2000@gmail.com</a></p>
+          <p style={css("margin:30px auto 0;text-align:center;font-size:15px;color:var(--gray);line-height:1.7;")}>Prefer to talk? Call or text <a href="tel:+19566140078" onClick={() => track("call_click", { location: "cta" })} style={css("color:var(--gold);")}>(956) 614-0078</a> · <a href="mailto:tomasgalvan2000@gmail.com" onClick={() => track("email_click", { location: "cta" })} style={css("color:var(--gold);")}>tomasgalvan2000@gmail.com</a></p>
         </div>
       </section>
 
@@ -421,11 +422,11 @@ export default function APTSite() {
               <span style={css("display:inline-flex;gap:3px;align-items:flex-end;height:20px;")}><span style={css("width:3px;height:9px;background:var(--gold);border-radius:1px;")} /><span style={css("width:3px;height:18px;background:var(--gold);border-radius:1px;")} /><span style={css("width:3px;height:13px;background:var(--gold);border-radius:1px;")} /></span>
               <span style={css("font-family:'Playfair Display',serif;font-size:21px;font-weight:600;")}>Affordable Piano Tuning</span>
             </div>
-            <p style={css("font-size:14.5px;line-height:1.7;color:var(--gray);font-weight:300;max-width:36ch;margin:0;")}>Expert piano tuning, maintenance, and restoration for San Antonio and the surrounding Hill Country since 2025.</p>
+            <p style={css("font-size:14.5px;line-height:1.7;color:var(--gray);font-weight:300;max-width:36ch;margin:0;")}>Affordable piano tuning, maintenance, and repair for San Antonio and the surrounding Hill Country since 2025.</p>
           </div>
           <div>
             <div style={css("font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;")}>Contact</div>
-            <div style={css("font-size:14.5px;line-height:2;color:var(--gray);font-weight:300;")}><a href="tel:+19566140078">(956) 614-0078</a><br /><a href="mailto:tomasgalvan2000@gmail.com">tomasgalvan2000@gmail.com</a><br />San Antonio, TX</div>
+            <div style={css("font-size:14.5px;line-height:2;color:var(--gray);font-weight:300;")}><a href="tel:+19566140078" onClick={() => track("call_click", { location: "footer" })}>(956) 614-0078</a><br /><a href="mailto:tomasgalvan2000@gmail.com" onClick={() => track("email_click", { location: "footer" })}>tomasgalvan2000@gmail.com</a><br />San Antonio, TX</div>
           </div>
           <div>
             <div style={css("font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;")}>Service Areas</div>

@@ -19,6 +19,8 @@ const FIELDS: [string, string][] = [
   ["name", "Name"],
   ["phone", "Phone"],
   ["email", "Email"],
+  ["preferredDate", "Preferred date"],
+  ["preferredTime", "Preferred time"],
   ["pianoType", "Piano type"],
   ["tuning", "Tuning service"],
   ["cleaning", "Interior cleaning"],
@@ -115,6 +117,38 @@ export async function POST(req: Request) {
         { status: 502 }
       );
     }
+
+    // Best-effort confirmation to the customer — never fails the request.
+    // NOTE: the shared onboarding@resend.dev sender only delivers to the Resend
+    // account owner until you verify your own domain. After verifying a domain
+    // in Resend, change the `from` here to an address on it and customer
+    // confirmations will deliver to anyone.
+    const customerEmail = get("email");
+    if (customerEmail) {
+      const confirmHtml = `
+        <div style="font-family:Inter,Arial,sans-serif;max-width:620px;margin:0 auto;color:#111">
+          <h2 style="font-family:Georgia,serif;color:#111;margin:0 0 6px">Thanks, ${esc(name)} — we've got your request</h2>
+          <p style="color:#555;font-size:15px;line-height:1.6;margin:0 0 18px">
+            This confirms your piano tuning request reached Affordable Piano Tuning. We'll review the
+            details and follow up soon with a clear, honest quote. For anything urgent, call or text
+            <a href="tel:${SITE.phone}" style="color:#8f7117">${SITE.phoneDisplay}</a>.
+          </p>
+          <h3 style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#8a8a8a;margin:0 0 8px">Your request</h3>
+          <table style="border-collapse:collapse;width:100%;font-size:14px">${rows}</table>
+          <p style="color:#999;font-size:12px;margin-top:20px">Affordable Piano Tuning · San Antonio, TX</p>
+        </div>`;
+      try {
+        await resend.emails.send({
+          from: "Affordable Piano Tuning <onboarding@resend.dev>",
+          to: [customerEmail],
+          subject: "We received your request — Affordable Piano Tuning",
+          html: confirmHtml,
+        });
+      } catch {
+        // confirmation is non-critical; the owner already got the request
+      }
+    }
+
     return Response.json({ ok: true });
   } catch {
     return Response.json(
