@@ -395,6 +395,41 @@ export default function APTSite() {
         </div>
       </section>
 
+      {/* ============ VETERAN DISCOUNT ============ */}
+      <section id="veterans" style={css("position:relative;padding:20px 0 70px;")}>
+        <div style={css("max-width:1000px;margin:0 auto;padding:0 var(--gutter);")}>
+          <div className="fade" style={css("position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:38px;background:var(--ink2);border:1px solid var(--line);border-radius:18px;padding:38px 40px;overflow:hidden;")}>
+            {/* Texas-flag accent edge */}
+            <span style={css("position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,#3b5aa6 0 33%,#f2f2f2 33% 66%,#bf3b34 66% 100%);")} />
+            {/* official logo (drops in automatically once /thank-a-veteran.png exists) over a Texas-heart fallback */}
+            <div style={css("position:relative;flex:none;width:210px;height:118px;border-radius:12px;background:#0d1b2a;display:flex;align-items:center;justify-content:center;overflow:hidden;")}>
+              <svg viewBox="0 0 64 60" width="60" height="56" aria-hidden="true">
+                <defs><clipPath id="tav-heart"><path d="M32,57 C7,40 5,20 16,12.5 C24,7 30,12 32,18 C34,12 40,7 48,12.5 C59,20 57,40 32,57 Z" /></clipPath></defs>
+                <g clipPath="url(#tav-heart)">
+                  <rect x="0" y="0" width="26" height="60" fill="#3b5aa6" />
+                  <rect x="26" y="0" width="38" height="30" fill="#f2f2f2" />
+                  <rect x="26" y="30" width="38" height="30" fill="#bf3b34" />
+                  <path d="M13,14.5 l2.2,4.6 l5,.5 l-3.8,3.4 l1.1,4.9 l-4.5,-2.6 l-4.5,2.6 l1.1,-4.9 l-3.8,-3.4 l5,-.5 z" fill="#ffffff" />
+                </g>
+              </svg>
+              <img
+                src="/thank-a-veteran.jpg"
+                alt="SATX Thank A Veteran Program"
+                onError={(e) => { e.currentTarget.style.display = "none"; }}
+                style={css("position:absolute;inset:0;width:100%;height:100%;object-fit:contain;")}
+              />
+            </div>
+            {/* copy */}
+            <div style={css("flex:1;min-width:240px;")}>
+              <div style={css("display:flex;align-items:center;gap:11px;margin-bottom:12px;")}><span style={css("width:24px;height:1px;background:var(--gold);")} /><span style={css("font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);")}>SATX Thank A Veteran Program</span></div>
+              <h2 style={css("font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(26px,3.4vw,40px);line-height:1.1;margin:0 0 12px;")}>Veterans save<span style={css("font-style:italic;color:var(--gold);")}> $30</span></h2>
+              <p style={css("font-size:15.5px;line-height:1.7;color:var(--gray);font-weight:300;margin:0 0 18px;max-width:52ch;")}>Thank you for your service. As a proud participant in the SATX Thank A Veteran Program, I take $30 off for any veteran who shows their Thank&#8209;A&#8209;Veteran Card — just mention it when you book.</p>
+              <a href="#book" data-nav onClick={() => track("book_cta", { location: "veterans" })} style={css("display:inline-flex;align-items:center;gap:9px;font-size:14px;letter-spacing:.02em;color:var(--gold);font-weight:500;")}>Book your tuning<span style={css("display:inline-block;width:15px;height:1px;background:var(--gold);position:relative;")}><span style={css("position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid var(--gold);border-right:1px solid var(--gold);transform:rotate(45deg);")} /></span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ============ FINAL CTA ============ */}
       <section id="book" style={css("position:relative;padding:130px 0 120px;text-align:center;overflow:hidden;")}>
         <div id="cresc" style={css("position:absolute;inset:0;z-index:0;opacity:.55;")}>
