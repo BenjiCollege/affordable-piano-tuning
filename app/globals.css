@@ -200,7 +200,7 @@ a {
   padding: 13px 15px;
   border: 1px solid var(--line2);
   border-radius: 12px;
-  background: transparent;
+  background: var(--ink); /* solid, so the decorative wave behind the form doesn't show through */
   color: var(--ivory);
   font-family: 'Inter', sans-serif;
   font-size: 15px;
@@ -244,12 +244,9 @@ textarea.book-input { min-height: 92px; resize: vertical; }
    MOBILE (≤ 768px) — overrides only; desktop is unchanged.
    Inline styles win over the cascade, so these use !important.
    ============================================================ */
-@media (max-width: 768px) {
-  :root, [data-theme="dark"], [data-theme="light"] {
-    --gutter: 22px;
-  }
-
-  /* --- header / nav --- */
+/* Header: the 6-link desktop nav wraps below ~1025px, so tablets get the
+   hamburger menu too. */
+@media (max-width: 1024px) {
   .nav-desktop { display: none !important; }
   .nav-burger { display: flex !important; }
   #sapt-head { padding: 16px 0 !important; }
@@ -284,15 +281,29 @@ textarea.book-input { min-height: 92px; resize: vertical; }
     font-size: 17px;
     font-weight: 500;
   }
+}
+
+@media (max-width: 768px) {
+  :root, [data-theme="dark"], [data-theme="light"] {
+    --gutter: 22px;
+  }
 
   /* --- grids stack --- */
-  #svc-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  /* 1 column on phones, 2 once cards can be ≥260px wide (never a half-empty 3rd) */
+  #svc-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important; }
+  .svc-card { padding: 28px 24px 26px !important; }
+  .svc-card > div > div:first-child { margin-bottom: 16px !important; }
+  /* sheet-music staff runs behind the "Why" copy — keep it as texture only */
+  #sheet { opacity: .28 !important; }
+  #hero-eyebrow span:last-child { letter-spacing: .18em !important; }
   .why-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 30px !important; }
   .proc-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
   .about-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
   .area-grid { grid-template-columns: 1fr !important; gap: 44px !important; }
   #area-list { grid-template-columns: repeat(2, 1fr) !important; }
-  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 30px !important; }
+  .footer-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+  /* room so the fixed Light / Sound pills don't cover the last footer line */
+  footer { padding-bottom: 90px !important; }
 
   /* --- sections: drop forced full-height, trim vertical padding --- */
   .panel { min-height: auto !important; }
@@ -330,4 +341,13 @@ textarea.book-input { min-height: 92px; resize: vertical; }
   .about-grid { gap: 50px !important; }
   .area-grid { gap: 50px !important; }
   .footer-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 36px !important; }
+}
+
+/* Keep the hero key strip at full size so it overflows evenly (centered)
+   on screens narrower than it, instead of shrinking and clipping on one side. */
+#hero-keys { flex-shrink: 0; }
+
+/* The "Scroll" cue sits on top of the hero key strip wherever the strip shows. */
+@media (min-width: 769px) {
+  #hero-scrollcue { display: none !important; }
 }

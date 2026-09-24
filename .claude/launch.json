@@ -4,7 +4,7 @@
     {
       "name": "apt-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": ["--prefix", "M:\\SELF PROJECTS\\affordable-piano-tuning", "run", "dev"],
       "port": 3000
     }
   ]

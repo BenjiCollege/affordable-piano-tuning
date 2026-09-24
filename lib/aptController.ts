@@ -778,8 +778,10 @@ export class APTController {
       const ic = item.querySelector<HTMLElement>(".faq-ic");
       const v = item.querySelector<HTMLElement>(".faq-v");
       if (!q || !a || !ic || !v) return;
+      q.setAttribute("aria-expanded", "false");
       this.on(q, "click", () => {
         const open = item.dataset.open === "1";
+        q.setAttribute("aria-expanded", String(!open));
         if (open) {
           a.style.height = "0px";
           a.style.opacity = "0";

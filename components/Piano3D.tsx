@@ -138,6 +138,19 @@ function PianoScene({
     camera.position.lerp(p, phaseRef.current === "idle" ? 0.06 : 0.14);
     lookTarget.current.lerp(tgt, 0.12);
     camera.lookAt(lookTarget.current);
+    // Portrait phones: the full 88 keys would be ~4px wide. While playing,
+    // narrow the FOV so ~8 white keys (≈1 octave around middle C) fill the width.
+    if (mobile) {
+      const cam = camera as THREE.PerspectiveCamera;
+      const playing = phaseRef.current === "enter" || phaseRef.current === "play";
+      const fov = playing
+        ? Math.min(52, (Math.atan((8 * 0.0234) / 2 / 1.035 / cam.aspect) * 360) / Math.PI)
+        : 52;
+      if (Math.abs(cam.fov - fov) > 0.05) {
+        cam.fov += (fov - cam.fov) * 0.08;
+        cam.updateProjectionMatrix();
+      }
+    }
     // key press/glow animation lives in <Keyboard>
   });
 
@@ -304,7 +317,7 @@ export default function Piano3D() {
           <span style={{ width: 30, height: 30, borderRadius: "50%", background: "var(--gold)", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
             <span style={{ width: 0, height: 0, borderTop: "7px solid transparent", borderBottom: "7px solid transparent", borderLeft: "11px solid #0B0B0B", marginLeft: 3 }} />
           </span>
-          Click me to play
+          {mobile ? "Tap to play" : "Click me to play"}
         </span>
       </button>
 

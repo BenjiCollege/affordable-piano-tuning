@@ -33,6 +33,14 @@ function Note({ size = 16, className }: { size?: number; className?: string }) {
 export default function APTSite() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Escape closes the mobile menu.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMobileOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileOpen]);
+
   useEffect(() => {
     let controller: APTController | null = null;
     let cancelled = false;
@@ -92,7 +100,7 @@ export default function APTSite() {
             <a href="#book" data-nav onClick={() => track("book_cta", { location: "header" })} className="magnetic" style={css("display:inline-flex;align-items:center;gap:9px;font-size:13.5px;letter-spacing:.04em;color:var(--onGold);background:var(--gold);padding:11px 20px;border-radius:40px;font-weight:500;")}>Book Your Tuning</a>
           </nav>
           {/* mobile hamburger */}
-          <button className="nav-burger" aria-label="Open menu" onClick={() => setMobileOpen(true)} style={css("display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;")}>
+          <button className="nav-burger" aria-label="Open menu" aria-expanded={mobileOpen} onClick={() => setMobileOpen(true)} style={css("display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;")}>
             <span style={css("width:24px;height:2px;background:var(--ivory);border-radius:2px;")} />
             <span style={css("width:24px;height:2px;background:var(--ivory);border-radius:2px;")} />
             <span style={css("width:24px;height:2px;background:var(--ivory);border-radius:2px;")} />
@@ -472,7 +480,7 @@ export default function APTSite() {
             <div style={css("font-size:14.5px;line-height:2;color:var(--gray);font-weight:300;")}><a href="https://www.instagram.com/tommytunessatx" target="_blank" rel="noopener noreferrer">Instagram</a><br /><a href="https://www.tiktok.com/@tommytunessatx" target="_blank" rel="noopener noreferrer">TikTok</a><br /><a href="https://www.youtube.com/@tommytunessatx" target="_blank" rel="noopener noreferrer">YouTube</a><br /><a href="https://www.threads.net/@tommytunessatx" target="_blank" rel="noopener noreferrer">Threads</a></div>
           </div>
         </div>
-        <div style={css("max-width:1280px;margin:54px auto 0;padding:24px 40px 0;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12.5px;color:var(--gray);letter-spacing:.04em;")}>
+        <div style={css("max-width:1280px;margin:54px auto 0;padding:24px var(--gutter) 0;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:12.5px;color:var(--gray);letter-spacing:.04em;")}>
           <span>© 2026 Affordable Piano Tuning. All rights reserved.</span>
           <span>Piano Tuning · Repair · Maintenance — San Antonio, Texas</span>
         </div>
