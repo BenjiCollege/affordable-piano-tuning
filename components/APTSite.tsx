@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { track } from "@vercel/analytics/react";
 import dynamic from "next/dynamic";
 import { css } from "@/lib/css";
-import { services, cities, mapPoints, faqs, sheetNotes } from "@/lib/data";
+import { services, cities, mapPoints, faqs, sheetNotes, prices, TRAVEL_NOTE, VETERAN_DISCOUNT } from "@/lib/data";
 import { SITE } from "@/lib/site";
 import BookingForm from "@/components/BookingForm";
 import { APTController } from "@/lib/aptController";
@@ -32,6 +32,19 @@ function Note({ size = 16, className }: { size?: number; className?: string }) {
 
 export default function APTSite() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Don't even download the ~250 KB three.js bundle until the piano section is near.
+  const [pianoNear, setPianoNear] = useState(false);
+
+  useEffect(() => {
+    const sec = document.getElementById("keyboard");
+    if (!sec) return;
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setPianoNear(true); io.disconnect(); } },
+      { rootMargin: "800px" }
+    );
+    io.observe(sec);
+    return () => io.disconnect();
+  }, []);
 
   // Escape closes the mobile menu.
   useEffect(() => {
@@ -99,6 +112,10 @@ export default function APTSite() {
             <a href="#faq" data-nav style={css("font-size:13.5px;letter-spacing:.04em;color:var(--gray);")}>FAQ</a>
             <a href="#book" data-nav onClick={() => track("book_cta", { location: "header" })} className="magnetic" style={css("display:inline-flex;align-items:center;gap:9px;font-size:13.5px;letter-spacing:.04em;color:var(--onGold);background:var(--gold);padding:11px 20px;border-radius:40px;font-weight:500;")}>Book Your Tuning</a>
           </nav>
+          {/* phone/tablet: always-visible call button */}
+          <a className="nav-call" href={`tel:${SITE.phone}`} aria-label={`Call or text ${SITE.phoneDisplay}`} onClick={() => track("call_click", { location: "header" })} style={css("display:none;align-items:center;justify-content:center;width:40px;height:40px;margin-left:auto;margin-right:6px;border-radius:50%;border:1px solid var(--line2);color:var(--gold);")}>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" /></svg>
+          </a>
           {/* mobile hamburger */}
           <button className="nav-burger" aria-label="Open menu" aria-expanded={mobileOpen} onClick={() => setMobileOpen(true)} style={css("display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;")}>
             <span style={css("width:24px;height:2px;background:var(--ivory);border-radius:2px;")} />
@@ -115,6 +132,7 @@ export default function APTSite() {
           <a href="#area" data-nav onClick={() => setMobileOpen(false)}>Service Area</a>
           <a href="#faq" data-nav onClick={() => setMobileOpen(false)}>FAQ</a>
           <a href="#book" data-nav onClick={() => setMobileOpen(false)} className="nav-mobile-cta">Book Your Tuning</a>
+          <a href={`tel:${SITE.phone}`} onClick={() => track("call_click", { location: "menu" })} className="nav-mobile-call">Call or text {SITE.phoneDisplay}</a>
         </div>
       </header>
 
@@ -149,28 +167,28 @@ export default function APTSite() {
         <div style={css("position:absolute;inset:0;z-index:1;background:radial-gradient(120% 90% at 50% 0%,rgba(212,175,55,.07),transparent 55%);")} />
 
         <div style={css("position:relative;z-index:3;max-width:1280px;margin:0 auto;padding:0 var(--gutter);width:100%;")}>
-          <div id="hero-eyebrow" style={css("display:flex;align-items:center;gap:14px;margin-bottom:30px;opacity:0;")}>
+          <div id="hero-eyebrow" style={css("display:flex;align-items:center;gap:14px;margin-bottom:30px;")}>
             <span style={css("width:34px;height:1px;background:var(--gold);")} />
             <span style={css("font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);")}>San Antonio, Texas · Est. 2025</span>
           </div>
           <h1 style={css("font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(44px,7.4vw,108px);line-height:1.02;letter-spacing:-.015em;margin:0;max-width:14ch;")}>
             <span className="line" style={css("display:block;overflow:hidden;padding-bottom:.06em;")}>
-              <span className="reveal-i" style={css("display:inline-block;transform:translateY(118%);")}>Affordable</span>{" "}
-              <span className="reveal-i" style={css("display:inline-block;transform:translateY(118%);")}>Piano</span>{" "}
-              <span className="reveal-i" style={css("display:inline-block;transform:translateY(118%);")}>Tuning</span>
+              <span className="reveal-i" style={css("display:inline-block;animation-delay:.15s;")}>Affordable</span>{" "}
+              <span className="reveal-i" style={css("display:inline-block;animation-delay:.22s;")}>Piano</span>{" "}
+              <span className="reveal-i" style={css("display:inline-block;animation-delay:.29s;")}>Tuning</span>
             </span>
             <span className="line" style={css("display:block;overflow:hidden;padding-bottom:.06em;")}>
-              <span className="reveal-i" style={css("display:inline-block;transform:translateY(118%);")}>in</span>{" "}
-              <span className="reveal-i" style={css("display:inline-block;transform:translateY(118%);font-style:italic;color:var(--gold);")}>San</span>{" "}
-              <span className="reveal-i" style={css("display:inline-block;transform:translateY(118%);font-style:italic;color:var(--gold);")}>Antonio</span>
+              <span className="reveal-i" style={css("display:inline-block;animation-delay:.36s;")}>in</span>{" "}
+              <span className="reveal-i" style={css("display:inline-block;animation-delay:.43s;font-style:italic;color:var(--gold);")}>San</span>{" "}
+              <span className="reveal-i" style={css("display:inline-block;animation-delay:.5s;font-style:italic;color:var(--gold);")}>Antonio</span>
             </span>
           </h1>
-          <p id="hero-sub" style={css("margin:34px 0 0;max-width:46ch;font-size:clamp(16px,1.5vw,20px);line-height:1.6;color:var(--gray);font-weight:300;opacity:0;")}>Careful tuning, maintenance, and repair for homes, churches, schools, studios, and the stages where music lives.</p>
-          <div id="hero-cta" style={css("display:flex;flex-wrap:wrap;gap:18px;margin-top:42px;opacity:0;")}>
+          <p id="hero-sub" style={css("margin:34px 0 0;max-width:46ch;font-size:clamp(16px,1.5vw,20px);line-height:1.6;color:var(--gray);font-weight:300;")}>Careful tuning, maintenance, and repair for homes, churches, schools, studios, and the stages where music lives.</p>
+          <div id="hero-cta" style={css("display:flex;flex-wrap:wrap;gap:18px;margin-top:42px;")}>
             <a href="#book" data-nav onClick={() => track("book_cta", { location: "hero" })} className="magnetic" style={css("display:inline-flex;align-items:center;gap:11px;background:var(--gold);color:var(--onGold);padding:17px 30px;border-radius:46px;font-size:15px;font-weight:500;letter-spacing:.01em;")}>Book Your Tuning
               <span style={css("display:inline-block;width:16px;height:1px;background:var(--onGold);position:relative;")}><span style={css("position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid var(--onGold);border-right:1px solid var(--onGold);transform:rotate(45deg);")} /></span>
             </a>
-            <a href="#services" data-nav className="magnetic" style={css("display:inline-flex;align-items:center;gap:11px;border:1px solid var(--line2);color:var(--ivory);padding:17px 30px;border-radius:46px;font-size:15px;font-weight:400;")}>Explore Services</a>
+            <a href={`tel:${SITE.phone}`} onClick={() => track("call_click", { location: "hero" })} className="magnetic" style={css("display:inline-flex;align-items:center;gap:11px;border:1px solid var(--line2);color:var(--ivory);padding:17px 30px;border-radius:46px;font-size:15px;font-weight:400;")}>Call or text {SITE.phoneDisplay}</a>
           </div>
         </div>
 
@@ -178,7 +196,7 @@ export default function APTSite() {
         <div style={css("position:relative;z-index:3;margin-top:auto;width:100%;display:flex;justify-content:center;padding-bottom:28px;")}>
           <div id="hero-keys" style={css("position:relative;height:116px;width:100%;max-width:1280px;")} />
         </div>
-        <div id="hero-scrollcue" style={css("position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;")}>
+        <div id="hero-scrollcue" style={css("position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;")}>
           <span style={css("font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gray);")}>Scroll</span>
           <span style={css("width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:bob 2.4s ease-in-out infinite;")} />
         </div>
@@ -205,6 +223,23 @@ export default function APTSite() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* upfront pricing (numbers come from lib/data `prices`) */}
+          <div className="fade" style={css("margin-top:56px;border:1px solid var(--line);border-radius:18px;padding:34px clamp(22px,3vw,40px);background:var(--ink2);")}>
+            <div style={css("display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 30px;margin-bottom:28px;")}>
+              <h3 style={css("font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(24px,2.6vw,32px);margin:0;")}>Honest, upfront<span style={css("font-style:italic;color:var(--gold);")}> pricing</span></h3>
+              <span style={css("font-size:13.5px;line-height:1.6;color:var(--gray);")}>{TRAVEL_NOTE} · Veterans save ${VETERAN_DISCOUNT}</span>
+            </div>
+            <div style={css("display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px 28px;")}>
+              {Object.values(prices).map((p) => (
+                <div key={p.label}>
+                  <div style={css("font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;")}>{p.label}</div>
+                  <div style={css("font-family:'Playfair Display',serif;font-size:28px;line-height:1.1;")}>${p.upright}<span style={css("font-family:'Inter',sans-serif;font-size:13.5px;color:var(--gray);")}> upright</span></div>
+                  <div style={css("font-size:13.5px;line-height:1.5;color:var(--gray);margin-top:4px;")}>${p.grand} grand{"note" in p ? ` · ${p.note}` : ""}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -245,7 +280,7 @@ export default function APTSite() {
           <div style={css("font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;")}>The Concert Grand</div>
           <h2 style={css("font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(28px,3.6vw,46px);margin:0;color:#F4EEE0;")}>Sit down at the keys</h2>
         </div>
-        <Piano3D />
+        {pianoNear && <Piano3D />}
       </section>
 
       {/* ============ ABOUT ============ */}

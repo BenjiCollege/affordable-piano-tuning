@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SITE } from "@/lib/site";
+import { prices } from "@/lib/data";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -80,7 +81,7 @@ const jsonLd = {
   image: `${SITE.url}/opengraph-image`,
   telephone: SITE.phone,
   email: SITE.email,
-  priceRange: "$$",
+  priceRange: `$${prices.tuning.upright}–$${prices.pitchRaise.grand}`,
   foundingDate: SITE.founded,
   address: {
     "@type": "PostalAddress",
@@ -99,12 +100,6 @@ const jsonLd = {
     "Piano detailing",
     "Piano repair",
   ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: SITE.ratingValue,
-    reviewCount: SITE.reviewCount,
-    bestRating: 5,
-  },
   sameAs: [
     SITE.social.youtube,
     SITE.social.tiktok,

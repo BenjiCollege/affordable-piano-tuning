@@ -24,8 +24,6 @@ export const SITE = {
   region: "TX",
   founded: "2025",
   reviewsUrl: "https://maps.app.goo.gl/Z94jnWKUkwqHu9Pq7",
-  reviewCount: 2,
-  ratingValue: 5,
   socialHandle: "tommytunessatx",
   social: {
     youtube: "https://www.youtube.com/@tommytunessatx",

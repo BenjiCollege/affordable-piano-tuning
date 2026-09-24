@@ -22,7 +22,7 @@
   --ink2: #EFE8D9;
   --ink3: #E7DECC;
   --ivory: #1c1813;
-  --gold: #8f7117;
+  --gold: #7a5f10; /* 5.4:1 on --ink, 5.0:1 on --ink2 (WCAG AA) */
   --walnut: #7a6446;
   --gray: #6e655a;
   --line: rgba(28, 24, 19, .13);
@@ -31,7 +31,7 @@
   --scrim: rgba(246, 241, 230, .92);
   --glass: rgba(255, 253, 248, .82);
   --dot: rgba(28, 24, 19, .6);
-  --onGold: #1c1813;
+  --onGold: #FFFFFF; /* 6.1:1 on the light-theme gold */
 }
 
 * {
@@ -161,6 +161,17 @@ a {
   50% { transform: rotate(26deg); }
 }
 
+/* Hero entrance runs in CSS so the headline paints on the first frame instead
+   of waiting for the JS animation bundle. The resting state is visible, so
+   reduced motion (animation:none below) and no-JS both just show the text. */
+@keyframes heroRise { from { transform: translateY(118%); } }
+@keyframes heroFade { from { opacity: 0; } }
+.reveal-i { animation: heroRise 1.1s cubic-bezier(.165, .84, .44, 1) both; }
+#hero-eyebrow { animation: heroFade .8s ease-out both; }
+#hero-sub { animation: heroFade .9s ease-out 1s both; }
+#hero-cta { animation: heroFade .9s ease-out 1.2s both; }
+#hero-scrollcue { animation: heroFade .8s ease-out 1.8s both; }
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
@@ -249,6 +260,19 @@ textarea.book-input { min-height: 92px; resize: vertical; }
 @media (max-width: 1024px) {
   .nav-desktop { display: none !important; }
   .nav-burger { display: flex !important; }
+  .nav-call { display: inline-flex !important; }
+  /* The scrolled header gets backdrop-filter, which would make it the containing
+     block for the fixed menu overlay (clipping it to the header bar). Drop it
+     while the menu is open. */
+  #sapt-head:has(.nav-mobile[data-open="1"]) {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .nav-mobile .nav-mobile-call {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: var(--gold);
+  }
   #sapt-head { padding: 16px 0 !important; }
 
   .nav-mobile {
@@ -287,6 +311,9 @@ textarea.book-input { min-height: 92px; resize: vertical; }
   :root, [data-theme="dark"], [data-theme="light"] {
     --gutter: 22px;
   }
+
+  /* brand name stays on one line next to the call + menu buttons */
+  #sapt-head a[href="#hero"] > span:last-child { font-size: min(17px, 4.3vw) !important; white-space: nowrap; }
 
   /* --- grids stack --- */
   /* 1 column on phones, 2 once cards can be ≥260px wide (never a half-empty 3rd) */

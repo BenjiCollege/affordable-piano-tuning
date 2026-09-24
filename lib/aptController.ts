@@ -91,7 +91,6 @@ export class APTController {
       this.init();
     } catch (e) {
       console.error("init", e);
-      this.revealAll();
     }
   }
 
@@ -126,12 +125,6 @@ export class APTController {
   ) {
     target.addEventListener(type, handler, opts);
     this.cleanups.push(() => target.removeEventListener(type, handler, opts));
-  }
-
-  revealAll() {
-    document
-      .querySelectorAll<HTMLElement>(".reveal-i")
-      .forEach((el) => (el.style.transform = "translateY(0)"));
   }
 
   /* ---------- AUDIO ---------- */
@@ -349,24 +342,15 @@ export class APTController {
     host.innerHTML = html;
   }
 
+  // Hero text entrance is pure CSS (globals.css); only the key-strip
+  // "scale" sweep needs JS, since the keys themselves are built in JS.
   heroIntro() {
-    const gsap = this.gsap;
-    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-    tl.to("#hero-eyebrow", { opacity: 1, duration: 0.8 })
-      .to(".reveal-i", { y: 0, duration: 1.1, stagger: 0.07 }, "-=0.5")
-      .to("#hero-sub", { opacity: 1, y: 0, duration: 0.9 }, "-=0.6")
-      .to("#hero-cta", { opacity: 1, y: 0, duration: 0.9 }, "-=0.7")
-      .to("#hero-scrollcue", { opacity: 1, duration: 0.8 }, "-=0.3");
-    // key strip illumination like a scale
-    if (this.heroWhites && this.heroWhites.length) {
-      const glows = this.heroWhites.map((w) => w.glow);
-      tl.fromTo(
-        glows,
-        { opacity: 0.9 },
-        { opacity: 0, duration: 1.0, stagger: 0.06, ease: "power2.out" },
-        "-=1.4"
-      );
-    }
+    if (!this.heroWhites.length) return;
+    this.gsap.fromTo(
+      this.heroWhites.map((w) => w.glow),
+      { opacity: 0.9 },
+      { opacity: 0, duration: 1.0, stagger: 0.06, ease: "power2.out", delay: 0.3 }
+    );
   }
 
   setupNav() {

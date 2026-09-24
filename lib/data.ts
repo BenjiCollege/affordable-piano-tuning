@@ -54,6 +54,21 @@ export const sheetNotes: SheetNote[] = [
   [1300, 170],
 ];
 
+// Single source of truth for prices — used by the price strip, the booking
+// form options, the FAQ answer, and the JSON-LD priceRange.
+export type Price = { label: string; note?: string; upright: number; grand: number };
+
+export const prices = {
+  tuning: { label: "Tuning", note: "Tuned within the last 2 years", upright: 70, grand: 85 },
+  pitchRaise: { label: "Pitch raise & tuning", note: "Not tuned in 2+ years", upright: 120, grand: 135 },
+  basicClean: { label: "Interior cleaning", note: "Vacuum & interior clean", upright: 50, grand: 65 },
+  deepClean: { label: "Deep cleaning", note: "Interior + action cleaning", upright: 80, grand: 100 },
+  polish: { label: "Exterior polish", upright: 30, grand: 40 },
+} satisfies Record<string, Price>;
+
+export const TRAVEL_NOTE = "First 20 travel miles free, then $1 per mile";
+export const VETERAN_DISCOUNT = 30;
+
 export type Faq = { q: string; a: string };
 
 export const faqs: Faq[] = [
@@ -75,6 +90,6 @@ export const faqs: Faq[] = [
   },
   {
     q: "What does a visit cost?",
-    a: "Pricing depends on the instrument and its condition. Reach out with a few details and I'll give you a clear, honest quote before we book.",
+    a: `A tuning is $${prices.tuning.upright} for an upright or $${prices.tuning.grand} for a grand if it's been tuned in the last two years. If it's been longer, a pitch raise & tuning is $${prices.pitchRaise.upright} / $${prices.pitchRaise.grand}. The first 20 travel miles are free ($1 per mile after that), and veterans with a Thank-A-Veteran Card save $${VETERAN_DISCOUNT}. Cleaning and polishing are optional add-ons.`,
   },
 ];

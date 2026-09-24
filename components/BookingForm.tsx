@@ -3,6 +3,9 @@
 import { useState, type FormEvent } from "react";
 import { track } from "@vercel/analytics/react";
 import { SITE } from "@/lib/site";
+import { prices, TRAVEL_NOTE, type Price } from "@/lib/data";
+
+const cost = (p: Price) => `($${p.upright} upright / $${p.grand} grand)`;
 
 /* Option lists mirror Tommy's intake form (with pricing). */
 const RADIOS: { name: string; label: string; options: string[] }[] = [
@@ -25,23 +28,23 @@ const RADIOS: { name: string; label: string; options: string[] }[] = [
     name: "tuning",
     label: "Tuning service",
     options: [
-      "Basic tuning — tuned within 2 years ($70 upright / $85 grand)",
-      "Pitch raise & retune — not tuned in 2+ years ($120 upright / $135 grand)",
+      `Basic tuning — tuned within 2 years ${cost(prices.tuning)}`,
+      `Pitch raise & retune — not tuned in 2+ years ${cost(prices.pitchRaise)}`,
     ],
   },
   {
     name: "cleaning",
     label: "Interior cleaning",
     options: [
-      "Basic vacuuming & interior cleaning ($50 upright / $65 grand)",
-      "Deep interior cleaning & action cleaning ($80 upright / $100 grand)",
+      `Basic vacuuming & interior cleaning ${cost(prices.basicClean)}`,
+      `Deep interior cleaning & action cleaning ${cost(prices.deepClean)}`,
       "No cleaning",
     ],
   },
   {
     name: "polish",
     label: "Exterior polishing?",
-    options: ["Yes ($30 upright / $40 grand)", "No"],
+    options: [`Yes ${cost(prices.polish)}`, "No"],
   },
 ];
 
@@ -155,7 +158,7 @@ export default function BookingForm() {
       <div className="book-field">
         <label className="book-q" htmlFor="bf-address">Service address *</label>
         <textarea id="bf-address" className="book-input" name="address" required placeholder="Street, city, ZIP" />
-        <p className="book-note">First 20 travel miles are complimentary; any further miles are $1 per mile.</p>
+        <p className="book-note">{TRAVEL_NOTE}.</p>
       </div>
 
       <div className="book-field">
